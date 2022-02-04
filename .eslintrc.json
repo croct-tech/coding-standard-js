@@ -20,6 +20,7 @@
     "browser": true
   },
   "rules": {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["src/**/*.test.ts"]}],
     "@typescript-eslint/explicit-member-accessibility": ["error"],
     "@typescript-eslint/member-delimiter-style": ["error", {
       "multiline": {
@@ -72,15 +73,9 @@
   },
   "overrides": [
     {
-      "files": ["test/**/*.ts"],
+      "files": ["src/**/*.test.ts"],
       "extends": ["plugin:jest/recommended"],
-      "plugins": ["jest"],
-      "rules": {
-        "no-new-object": "off"
-      },
-      "env": {
-        "jest": true
-      }
+      "plugins": ["jest"]
     }
   ]
 }
