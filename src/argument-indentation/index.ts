@@ -15,12 +15,7 @@ const rule = createRule({
             missing: 'Missing new line.',
         },
     },
-    defaultOptions: [
-        {
-            before: false,
-            after: true,
-        },
-    ],
+    defaultOptions: [],
     create(context) {
         function check(node: TSESTree.NewExpression | TSESTree.CallExpression) {
             const sourceCode = context.getSourceCode();
