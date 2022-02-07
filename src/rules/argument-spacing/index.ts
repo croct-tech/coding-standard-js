@@ -1,7 +1,7 @@
-import {TSESTree} from '@typescript-eslint/types';
+import {TSESTree} from '@typescript-eslint/experimental-utils';
 import {createRule} from '../createRule';
 
-const rule = createRule({
+export const argumentSpacing = createRule({
     name: 'argument-spacing',
     meta: {
         type: 'suggestion',
@@ -69,5 +69,3 @@ const rule = createRule({
         };
     },
 });
-
-export default rule;

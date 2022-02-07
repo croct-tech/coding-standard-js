@@ -1,11 +1,11 @@
 import {ESLintUtils} from '@typescript-eslint/utils';
-import rule from './index';
+import {argumentSpacing} from './index';
 
 const ruleTester = new ESLintUtils.RuleTester({
     parser: '@typescript-eslint/parser',
 });
 
-ruleTester.run('argument-spacing', rule, {
+ruleTester.run('argument-spacing', argumentSpacing, {
     valid: [
         {
             code: 'new Example(1, 2, 3);',
