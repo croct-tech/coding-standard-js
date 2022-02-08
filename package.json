@@ -35,6 +35,7 @@
     "cypress"
   ],
   "dependencies": {
+    "@rushstack/eslint-patch": "^1.1",
     "@typescript-eslint/eslint-plugin": "^5.10",
     "@typescript-eslint/experimental-utils": "^5.10",
     "eslint-config-airbnb": "^19.0",
