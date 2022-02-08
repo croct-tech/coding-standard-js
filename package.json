@@ -2,8 +2,12 @@
   "name": "@croct/eslint-plugin",
   "version": "0.0.0-dev",
   "description": "ESLint rules and presets applied to all Croct JavaScript projects.",
-  "author": "",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "author": {
+    "name": "Croct",
+    "email": "lib+coding-standard-js@croct.com",
+    "url": "https://croct.com"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
