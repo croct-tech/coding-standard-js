@@ -13,7 +13,7 @@
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "removeComments": false,
-    "outDir": "build",
+    "outDir": "dist",
     "downlevelIteration": true,
     "declaration": true,
     "lib": ["es6"]
@@ -22,8 +22,6 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "dist",
-    "src/**/*.test.ts"
+    "node_modules"
   ]
 }

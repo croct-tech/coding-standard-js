@@ -5,4 +5,3 @@ export const rules = {
     'argument-spacing': argumentSpacing,
     'jsx-attribute-spacing': jsxAttributeSpacing,
 };
-

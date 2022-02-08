@@ -19,7 +19,7 @@ export const argumentSpacing = createRule({
     },
     defaultOptions: [],
     create: context => {
-        function check(node: TSESTree.NewExpression | TSESTree.CallExpression) {
+        function check(node: TSESTree.NewExpression | TSESTree.CallExpression): void {
             const sourceCode = context.getSourceCode();
 
             if (node.arguments.length === 0) {
@@ -76,12 +76,8 @@ export const argumentSpacing = createRule({
         }
 
         return {
-            CallExpression(node) {
-                check(node);
-            },
-            NewExpression(node) {
-                check(node);
-            },
+            CallExpression: check,
+            NewExpression: check,
         };
     },
 });

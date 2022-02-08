@@ -181,4 +181,20 @@ export const javascript = {
             },
         ],
     },
+    overrides: [
+        {
+            files: [
+                'src/**/*.test.js',
+                'test/**/*.js',
+            ],
+            extends: ['plugin:jest/recommended'],
+            plugins: ['jest'],
+            rules: {
+                'no-new-object': 'off',
+            },
+            env: {
+                jest: true,
+            },
+        },
+    ],
 };

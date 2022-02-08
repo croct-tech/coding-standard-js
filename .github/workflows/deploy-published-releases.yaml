@@ -32,14 +32,14 @@ jobs:
 
       - name: Prepare release
         run: |-
-          cp package.json LICENSE README.md build/
-          cd build
+          cp package.json LICENSE README.md dist/
+          cd dist
           sed -i -e "s~\"version\": \"0.0.0-dev\"~\"version\": \"${GITHUB_REF##*/}\"~" package.json
 
       - name: Publish pre-release to NPM
         if: ${{ github.event.release.prerelease }}
         run: |-
-          cd build
+          cd dist
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
           npm publish --access public --tag next
         env:
@@ -48,7 +48,7 @@ jobs:
       - name: Publish release to NPM
         if: ${{ !github.event.release.prerelease }}
         run: |-
-          cd build
+          cd dist
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
           npm publish --access public
         env:

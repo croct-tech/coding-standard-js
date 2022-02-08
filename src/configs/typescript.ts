@@ -86,4 +86,20 @@ export const typescript = {
             },
         ],
     },
+    overrides: [
+        {
+            files: [
+                'src/**/*.test.ts',
+                'test/**/*.ts',
+            ],
+            extends: ['plugin:jest/recommended'],
+            plugins: ['jest'],
+            rules: {
+                'no-new-object': 'off',
+            },
+            env: {
+                jest: true,
+            },
+        },
+    ],
 };
