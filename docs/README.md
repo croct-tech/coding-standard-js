@@ -75,7 +75,6 @@ To enable this preset, add the following to your `.eslintrc` file:
   "extends": [
     "plugin:@croct/cypress",
   ],
-}
 ```
 
 This preset extends the JavaScript preset – no need to include it as well.
