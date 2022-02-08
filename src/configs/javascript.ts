@@ -56,7 +56,7 @@ export const javascript = {
             'error',
             {
                 items: 6,
-                'max-len': 120,
+                'max-len': 100,
             },
         ],
         'no-smart-quotes/no-smart-quotes': 'error',
@@ -91,7 +91,7 @@ export const javascript = {
         'max-len': [
             'error',
             {
-                code: 120,
+                code: 100,
                 ignoreStrings: true,
             },
         ],
