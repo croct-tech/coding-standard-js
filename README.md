@@ -34,7 +34,7 @@ npm i -D @croct/eslint-plugin
 Then, add the following to your `.eslintrc.js` file:
 
 ```js
-// This is needed to avoid adding the transitive ESLint dependencies of the plugin to the project
+// Workaround for https://github.com/eslint/eslint/issues/3458
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
@@ -45,7 +45,9 @@ module.exports = {
 Note the `require` call at the top of the file. This is a workaround to avoid adding the transitive dependencies of 
 the plugin to the project, which is [currently not supported by the ESLint plugin system](https://github.com/eslint/eslint/issues/3458).
 
-For TypeScript projects, there are a few more steps. 
+### TypeScript
+
+For TypeScript projects, there are a few more steps.
 
 First, you need to install the TypeScript parser:
 
@@ -56,6 +58,7 @@ npm i -D @typescript-eslint/parser
 Then, add the following to your `.eslintrc.js` file:
 
 ```js
+// Workaround for https://github.com/eslint/eslint/issues/3458
 require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
