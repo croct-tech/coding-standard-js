@@ -9,6 +9,11 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run('argument-spacing', argumentSpacing, {
     valid: [
         {
+            code: `foo(
+            bar => true
+            )`,
+        },
+        {
             code: 'new Example(1, 2, 3);',
         },
         {
@@ -210,6 +215,24 @@ ruleTester.run('argument-spacing', argumentSpacing, {
                     endLine: 4,
                     column: 18,
                     endColumn: 18,
+                },
+            ],
+        },
+        {
+            code: `foo(bar =>
+                true
+            );`,
+            output: `foo(
+bar =>
+                true
+            );`,
+            errors: [
+                {
+                    messageId: 'missing',
+                    line: 1,
+                    endLine: 1,
+                    column: 5,
+                    endColumn: 5,
                 },
             ],
         },

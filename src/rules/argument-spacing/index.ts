@@ -42,7 +42,10 @@ export const argumentSpacing = createRule({
 
             const lastArgumentFirstToken = sourceCode.getFirstToken(lastArgument)!;
 
-            if (firstToken.loc.start.line === lastArgumentFirstToken.loc.start.line) {
+            if (
+                (lastArgument.type !== 'ArrowFunctionExpression' || lastArgument.body.type === 'BlockStatement')
+                && firstToken.loc.start.line === lastArgumentFirstToken.loc.start.line
+            ) {
                 return;
             }
 
