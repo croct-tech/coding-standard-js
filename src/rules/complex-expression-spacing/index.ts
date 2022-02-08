@@ -68,7 +68,13 @@ export const complexExpressionSpacing = createRule({
                 const {body} = node;
 
                 if (body.type !== 'BlockStatement') {
-                    check(body);
+                    const isParenthesized = sourceCode.getTokenBefore(body, {
+                        filter: token => token.type === 'Punctuator' && token.value === '(',
+                    }) !== null;
+
+                    if (isParenthesized) {
+                        check(body);
+                    }
                 }
             },
             IfStatement: (node): void => {
