@@ -4,7 +4,7 @@
   "description": "ESLint rules and presets applied to all Croct JavaScript projects.",
   "author": {
     "name": "Croct",
-    "email": "coding-standard-js+lib@croct.com",
+    "email": "eslint-plugin-js+lib@croct.com",
     "url": "https://github.com/croct-tech/coding-standard-js"
   },
   "license": "UNLICENSED",
