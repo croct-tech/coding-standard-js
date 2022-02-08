@@ -14,6 +14,9 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run('jsx-attribute-spacing', jsxAttributeSpacing, {
     valid: [
         {
+            code: '<Foo bar />',
+        },
+        {
             code: '<Foo bar={true ? 1 : 2} />',
         },
         {
