@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
 
       - name: Cache dependencies
         id: cache-dependencies
@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
 
       - name: Cache dependencies
         id: cache-dependencies
@@ -64,7 +64,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
 
       - name: Cache dependencies
         id: cache-dependencies
@@ -77,6 +77,9 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: Build
+        run: npm run build
+
       - name: Check coding standard violations
         run: npm run lint
 
@@ -86,7 +89,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
 
       - name: Cache dependencies
         id: cache-dependencies

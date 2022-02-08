@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
 
       - name: Cache dependencies
         id: cache-dependencies
@@ -32,14 +32,16 @@ jobs:
 
       - name: Prepare release
         run: |-
-          cp package.json LICENSE README.md build/
-          cd build
+          cp package.json LICENSE README.md dist/
+          cd dist
           sed -i -e "s~\"version\": \"0.0.0-dev\"~\"version\": \"${GITHUB_REF##*/}\"~" package.json
+          sed -i -e "s~\"main\": \"dist/index.js\"~\"main\": \"index.js\"~" package.json
+          sed -i -e "s~\"types\": \"dist/index.d.ts\"~\"types\": \"index.d.ts\"~" package.json
 
       - name: Publish pre-release to NPM
         if: ${{ github.event.release.prerelease }}
         run: |-
-          cd build
+          cd dist
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
           npm publish --access public --tag next
         env:
@@ -48,7 +50,7 @@ jobs:
       - name: Publish release to NPM
         if: ${{ !github.event.release.prerelease }}
         run: |-
-          cd build
+          cd dist
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
           npm publish --access public
         env:
