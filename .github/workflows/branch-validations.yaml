@@ -15,7 +15,7 @@ jobs:
   security-checks:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
@@ -39,7 +39,7 @@ jobs:
   validate:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
@@ -61,7 +61,7 @@ jobs:
   lint:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
@@ -86,7 +86,7 @@ jobs:
   test:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
