@@ -4,11 +4,8 @@
   "description": "ESLint rules and presets applied to all Croct JavaScript projects.",
   "author": "",
   "license": "UNLICENSED",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "files": [
-    "dist/**"
-  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/croct-tech/coding-standard-js.git"

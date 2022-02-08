@@ -11,7 +11,7 @@ export const typescript = {
         '@typescript-eslint/array-type': [
             'error',
             {
-                default: 'generic',
+                default: 'array-simple',
             },
         ],
         '@typescript-eslint/prefer-as-const': 'error',
@@ -85,6 +85,7 @@ export const typescript = {
                 },
             },
         ],
+        'no-undef': 'off',
     },
     overrides: [
         {
