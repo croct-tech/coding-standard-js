@@ -12,7 +12,7 @@ Enforces Croct's standard JavaScript best practices.
 
 To enable this preset, add the following to your `.eslintrc` file:
 
-```jsonc
+```json
 {
   "plugins": [
     "@croct"
@@ -29,7 +29,7 @@ Enforces Croct's standard TypeScript best practices.
 
 To enable this preset, add the following to your `.eslintrc` file:
 
-```jsonc
+```json
 {
   "plugins": [
     "@croct"
@@ -48,7 +48,7 @@ Enforces best practices for React-based projects.
 
 To enable this preset, add the following to your `.eslintrc` file:
 
-```jsonc
+```json
 {
   plugins: [
     "@croct"
@@ -67,7 +67,7 @@ Enforces Croct's best practices for writing Cypress acceptance tests
 
 To enable this preset, add the following to your `.eslintrc` file:
 
-```jsonc
+```json
 {
   "plugins": [
     "@croct"

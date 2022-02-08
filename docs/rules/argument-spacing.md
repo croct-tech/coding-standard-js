@@ -9,7 +9,7 @@ to enforce multiline arguments to have a new line before and after the first and
 
 ## How to use
 
-```jsonc
+```json
 {
   "@croct/argument-spacing": ["error"]
 }
