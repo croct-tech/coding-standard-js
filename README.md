@@ -3,7 +3,7 @@
         <img src="https://cdn.croct.io/brand/logo/repo-icon-green.svg" alt="Croct" height="80"/>
     </a>
     <br />
-    <strong>TypeScript Project Title</strong>
+    <strong>@croct/eslint-plugin</strong>
     <br />
     A brief description about the project.
 </p>
