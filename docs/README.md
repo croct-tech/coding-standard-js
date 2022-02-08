@@ -84,7 +84,7 @@ This preset extends the JavaScript preset – no need to include it as well.
 
 The plugin also ships with a few custom ESLint rules, all enabled by default in the related preset.
 
-| Rule                                                    | Description                                             |
-|---------------------------------------------------------|---------------------------------------------------------|
-| [argument-spacing](rules/argument-spacing.md)           | Enforce consistent spacing in multiline function calls. |
-| [jsx-attribute-spacing](rules/jsx-attribute-spacing.md) | Enforce consistent spacing in JSX multiline attributes. |
+| Rule                                                    | Description                                                    |
+|---------------------------------------------------------|----------------------------------------------------------------|
+| [argument-spacing](rules/argument-spacing.md)           | Enforces a surrounding line break in complex expression.       |
+| [jsx-attribute-spacing](rules/jsx-attribute-spacing.md) | Enforces a surrounding line break in multiline JSX attributes. |

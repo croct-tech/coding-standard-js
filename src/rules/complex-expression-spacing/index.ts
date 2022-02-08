@@ -2,12 +2,12 @@
 import {TSESTree} from '@typescript-eslint/experimental-utils';
 import {createRule} from '../createRule';
 
-export const jsxAttributeSpacing = createRule({
-    name: 'jsx-attribute-spacing',
+export const complexExpressionSpacing = createRule({
+    name: 'complex-expression-spacing',
     meta: {
         type: 'suggestion',
         docs: {
-            description: 'Enforces a surrounding line break in multiline JSX attributes.',
+            description: 'Enforces a surrounding line break in complex expression.',
             recommended: 'error',
         },
         fixable: 'whitespace',
@@ -20,29 +20,25 @@ export const jsxAttributeSpacing = createRule({
     create: context => {
         const sourceCode = context.getSourceCode();
 
-        function check(node: TSESTree.JSXAttribute): void {
-            const {value} = node;
+        function check(node: TSESTree.Expression): void {
+            const parentPreviousToken = sourceCode.getTokenBefore(node, {
+                filter: token => token.type === 'Punctuator',
+            })!;
 
-            if (value === null || value.type !== 'JSXExpressionContainer') {
+            const parentNextToken = sourceCode.getTokenAfter(node, {
+                filter: token => token.type === 'Punctuator',
+            })!;
+
+            if (parentPreviousToken.loc.end.line === parentNextToken.loc.start.line) {
                 return;
             }
 
-            const firstToken = sourceCode.getFirstToken(value.expression)!;
-            const lastToken = sourceCode.getLastToken(value.expression)!;
-
-            if (
-                (firstToken.type === 'Punctuator' && lastToken.type === 'Punctuator')
-                            || (firstToken.loc.start.line === lastToken.loc.end.line)
-            ) {
-                return;
-            }
-
-            const leftBrace = sourceCode.getFirstToken(value)!;
-            const rightBrace = sourceCode.getLastToken(value)!;
+            const firstToken = sourceCode.getFirstToken(node)!;
+            const lastToken = sourceCode.getLastToken(node)!;
 
             const tokens: Array<[TSESTree.Token, TSESTree.Token]> = [
-                [leftBrace, firstToken],
-                [lastToken, rightBrace],
+                [parentPreviousToken, firstToken],
+                [lastToken, parentNextToken],
             ];
 
             for (const [previousToken, currentToken] of tokens) {
@@ -68,7 +64,16 @@ export const jsxAttributeSpacing = createRule({
         }
 
         return {
-            JSXAttribute: check,
+            ArrowFunctionExpression: (node): void => {
+                const {body} = node;
+
+                if (body.type !== 'BlockStatement') {
+                    check(body);
+                }
+            },
+            IfStatement: (node): void => {
+                check(node.test);
+            },
         };
     },
 });

@@ -8,7 +8,7 @@ export const argumentSpacing = createRule({
     meta: {
         type: 'suggestion',
         docs: {
-            description: 'Enforces consistent spacing in function call arguments.',
+            description: 'Enforces a surrounding line break before and after the argument list in multiline functional calls.',
             recommended: 'error',
         },
         fixable: 'whitespace',
