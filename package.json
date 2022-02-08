@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/croct-tech/coding-standard-js",
   "scripts": {
-    "lint": "eslint '*/**/*.{ts,tsx}'",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
     "test": "jest -c jest.config.js --coverage",
     "validate": "tsc --noEmit",
     "build": "tsc -p tsconfig.build.json"

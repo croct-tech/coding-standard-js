@@ -11,11 +11,5 @@
   "parserOptions": {
     "extends": "./tsconfig.json",
     "project": ["./tsconfig.json"]
-  },
-  "ignorePatterns": [
-    "dist/**"
-  ],
-  "overrides": [
-
-  ]
+  }
 }
