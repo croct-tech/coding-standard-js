@@ -24,11 +24,6 @@ ruleTester.run('complex-expression-spacing', complexExpressionSpacing, {
                 foo === null ? 1 : 2
             ) return;`,
         },
-        {
-            code: `foo => foo === null
-                    ? 1
-                    : 2`,
-        },
     ],
     invalid: [
         {
