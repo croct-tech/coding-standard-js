@@ -32,10 +32,11 @@ if (item.name === 'foo'
 ### ✅ Correct
 
 ```js
-list.filter(item => (
-    item.name === 'foo'
-        ? true
-        : false
+list.filter(
+    item => (
+        item.name === 'foo'
+            ? true
+            : false
     )
 );
 ```
