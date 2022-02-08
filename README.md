@@ -28,14 +28,48 @@ The recommended way to install the SDK is via [NPM](https://npmjs.com). It pairs
 Webpack or Browserify:
 
 ```sh
-npm i @croct/eslint-plugin
+npm i -D @croct/eslint-plugin
 ```
 
 Then, add the following to your `.eslintrc.js` file:
 
-```json
-{
+```js
+// This is needed to avoid adding the transitive ESLint dependencies of the plugin to the project
+require("@rushstack/eslint-patch/modern-module-resolution");
+
+module.exports = {
    "plugins": ["@croct"]
+}
+```
+
+Note the `require` call at the top of the file. This is a workaround to avoid adding the transitive dependencies of 
+the plugin to the project, which is [currently not supported by the ESLint plugin system](https://github.com/eslint/eslint/issues/3458).
+
+For TypeScript projects, there are a few more steps. 
+
+First, you need to install the TypeScript parser:
+
+```sh
+npm i -D @typescript-eslint/parser
+```
+
+Then, add the following to your `.eslintrc.js` file:
+
+```js
+require("@rushstack/eslint-patch/modern-module-resolution");
+
+module.exports = {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@croct"
+    ],
+    "extends": [
+      "plugin:@croct/typescript"
+    ],
+    "parserOptions": {
+      "extends": "./tsconfig.json",
+      "project": ["./tsconfig.json"]
+    },
 }
 ```
 
