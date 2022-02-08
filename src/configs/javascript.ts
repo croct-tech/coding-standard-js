@@ -12,6 +12,7 @@ export const javascript = {
     ],
     rules: {
         '@croct/argument-spacing': 'error',
+        '@croct/complex-expression-spacing': 'error',
         'array-bracket-newline': [
             'error',
             'consistent',
