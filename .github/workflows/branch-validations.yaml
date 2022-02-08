@@ -55,6 +55,9 @@ jobs:
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: Build
+        run: npm run build
+
       - name: Check compilation errors
         run: npm run validate
 
