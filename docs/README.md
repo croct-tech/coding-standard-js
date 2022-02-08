@@ -80,7 +80,7 @@ To enable this preset, add the following to your `.eslintrc` file:
 
 This preset extends the JavaScript preset – no need to include it as well.
 
-### Custom rules
+## Custom rules
 
 The plugin also ships with a few custom ESLint rules, all enabled by default in the related preset.
 
