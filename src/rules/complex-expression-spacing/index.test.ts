@@ -12,6 +12,12 @@ ruleTester.run('complex-expression-spacing', complexExpressionSpacing, {
             code: 'foo => (foo === null ? 1 : 2)',
         },
         {
+            code: `foo => bar(
+            1,
+            2,
+            3)`,
+        },
+        {
             code: `foo => (
                 foo === null ? 1 : 2
             )`,
