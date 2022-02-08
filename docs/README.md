@@ -27,17 +27,19 @@ To enable this preset, add the following to your `.eslintrc` file:
 
 Enforces Croct's standard TypeScript best practices.
 
-To enable this preset, add the following to your `.eslintrc` file:
+To enable this preset, add the following to your `.eslintrc.js` file:
 
-```json
-{
-  "plugins": [
-    "@croct"
-  ],
-  "extends": [
-    "plugin:@croct/typescript"
-  ]
-}
+```js
+// This is a workaround for https://github.com/eslint/eslint/issues/3458
+require('@rushstack/eslint-patch/modern-module-resolution');
+
+module.exports = {
+    plugins: ['@croct'],
+    extends: ['plugin:@croct/typescript'],
+    parserOptions: {
+        project: ['**/tsconfig.json'],
+    },
+};
 ```
 
 This preset extends the JavaScript preset – no need to include it as well.
