@@ -4,6 +4,7 @@ export const react = {
         'plugin:react/recommended',
         'plugin:testing-library/react',
         'plugin:jest-dom/recommended',
+        'plugin:jsx-a11y/recommended',
         'plugin:@croct/javascript',
     ],
     plugins: [
