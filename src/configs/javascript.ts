@@ -142,9 +142,18 @@ export const javascript = {
                 blankLine: 'always',
                 prev: '*',
                 next: [
+                    'try',
+                ],
+            },
+            {
+                blankLine: 'always',
+                prev: [
+                    'break',
+                    'return',
+                ],
+                next: [
                     'case',
                     'default',
-                    'try',
                 ],
             },
             {
