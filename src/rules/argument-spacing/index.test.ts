@@ -18,6 +18,16 @@ ruleTester.run('argument-spacing', argumentSpacing, {
             );`,
         },
         {
+            code: `example(1, () => {
+                console.log('Example');
+            });`,
+        },
+        {
+            code: `example(() => {
+                console.log('Example');
+            });`,
+        },
+        {
             code: 'useEffect(() => console.log(1), []);',
         },
         {

@@ -26,12 +26,19 @@ export const argumentSpacing = createRule({
                 return;
             }
 
+            const lastArgument = node.arguments[node.arguments.length - 1];
+            const lastArgumentFirstToken = sourceCode.getFirstToken(lastArgument)!;
+
+            if (firstToken.loc.start.line === lastArgumentFirstToken.loc.start.line) {
+                return;
+            }
+
             const tokens = [
                 sourceCode.getTokenBefore(node.arguments[0], {
                     filter: token => token.value === '(',
                 }),
                 ...node.arguments,
-                sourceCode.getTokenAfter(node.arguments[node.arguments.length - 1], {
+                sourceCode.getTokenAfter(lastArgument, {
                     filter: token => token.value === ')',
                 }),
             ];
