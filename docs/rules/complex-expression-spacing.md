@@ -21,12 +21,6 @@ list.filter(item => (item.name === 'foo'
 ? true
 : false));
 ```
-
-```js
-list.filter(item => matches(
-    item.name,
-    item.constructor
-));
 ```
 
 ```js
@@ -44,15 +38,6 @@ list.filter(
         item.name === 'foo'
             ? true
             : false
-    )
-);
-```
-
-```js
-list.filter(
-    item => matches(
-        item.name,
-        item.constructor
     )
 );
 ```

@@ -26,6 +26,13 @@ call(1,
     2);
 ```
 
+```js
+list.filter(item => matches(
+    item.name,
+    item.constructor
+));
+```
+
 ```jsx
 useEffect(() => {
   console.log(`Hello, ${name}!`);
@@ -41,6 +48,15 @@ call(
 );
 ```
 
+```js
+list.filter(
+    item => matches(
+        item.name,
+        item.constructor
+    )
+);
+```
+
 ```jsx
 useEffect(
     () => {
@@ -48,6 +64,12 @@ useEffect(
     },
     [],
 );
+```
+
+```js
+it('should work', () => {
+    expect(everythingsFine()).toBe(true);
+});
 ```
 
 ## Options
