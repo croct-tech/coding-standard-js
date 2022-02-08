@@ -74,6 +74,10 @@ export const javascript = {
         'import/extensions': [
             'error',
             'never',
+            {
+                d: 'always',
+                json: 'always',
+            },
         ],
         'import/no-unresolved': 'off',
         indent: [
@@ -142,9 +146,18 @@ export const javascript = {
                 blankLine: 'always',
                 prev: '*',
                 next: [
+                    'try',
+                ],
+            },
+            {
+                blankLine: 'always',
+                prev: [
+                    'break',
+                    'return',
+                ],
+                next: [
                     'case',
                     'default',
-                    'try',
                 ],
             },
             {
