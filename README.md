@@ -47,9 +47,7 @@ the plugin to the project, which is [currently not supported by the ESLint plugi
 
 ### TypeScript
 
-For TypeScript projects, there are a few more steps.
-
-First, you need to install the TypeScript parser:
+For TypeScript projects, you need first to install the TypeScript parser:
 
 ```sh
 npm i -D @typescript-eslint/parser
