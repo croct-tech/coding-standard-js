@@ -4,8 +4,8 @@
   "description": "ESLint rules and presets applied to all Croct JavaScript projects.",
   "author": "",
   "license": "UNLICENSED",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "files": [
     "dist/**"
   ],
