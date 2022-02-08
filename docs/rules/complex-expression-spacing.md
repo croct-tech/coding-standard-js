@@ -23,6 +23,13 @@ list.filter(item => (item.name === 'foo'
 ```
 
 ```js
+list.filter(item => matches(
+    item.name,
+    item.constructor
+));
+```
+
+```js
 if (item.name === 'foo'
 || item.name === 'bar') {
   return true;
@@ -37,6 +44,15 @@ list.filter(
         item.name === 'foo'
             ? true
             : false
+    )
+);
+```
+
+```js
+list.filter(
+    item => matches(
+        item.name,
+        item.constructor
     )
 );
 ```
