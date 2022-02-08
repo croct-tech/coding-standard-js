@@ -1,6 +1,6 @@
 # `argument-spacing`
 
-Enforce consistent spacing in multiline function calls.
+Enforces a surrounding line break before and after the argument list in multiline functional calls.
 
 ## Rule details
 

@@ -1,11 +1,11 @@
 # `jsx-attribute-spacing`
 
-Enforce consistent spacing in JSX multiline attributes.
+Enforces a surrounding line break in multiline JSX attributes.
 
 ## Rule details
 
-This rule complements the [`eslint/function-call-argument-newline`](https://eslint.org/docs/rules/function-call-argument-newline)
-to enforce multiline arguments to have a new line before and after the first and last argument, respectively.
+This rule complements the [`react/jsx-curly-spacing`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md)
+to enforce multiline attributes to have a new line before and after the first and last braces, respectively.
 
 ## How to use
 
