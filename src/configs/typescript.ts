@@ -6,5 +6,6 @@ export const typescript = {
     plugins: ['@croct'],
     rules: {
         '@croct/argument-spacing': 'error',
+        '@croct/jsx-attribute-spacing': 'error',
     },
 };
