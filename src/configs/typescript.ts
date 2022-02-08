@@ -1,17 +1,13 @@
 export const typescript = {
     extends: ['plugin:@croct/javascript'],
-    plugins: ['@croct'],
+    plugins: [
+        '@typescript-eslint',
+        '@croct',
+    ],
     overrides: [
         {
             files: ['**/*.ts', '**/*.tsx'],
-            extends: [
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@croct/javascript',
-            ],
-            plugins: [
-                '@typescript-eslint',
-                '@croct',
-            ],
+            extends: ['plugin:@typescript-eslint/recommended'],
             parser: '@typescript-eslint/parser',
             rules: {
                 '@typescript-eslint/array-type': ['error', {
