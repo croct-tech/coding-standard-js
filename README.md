@@ -8,6 +8,7 @@
     A set of <a href="https://eslint.org/">ESLint</a> rules applied to all Croct JavaScript projects.
 </p>
 <p align="center">
+    <a href="https://www.npmjs.com/package/@croct/eslint-plugin"><img alt="Version" src="https://img.shields.io/npm/v/@croct/eslint-plugin"/></a>
     <a href="https://github.com/croct-tech/coding-standard-js/actions/workflows/branch-validations.yaml">
         <img alt="Build" src="https://github.com/croct-tech/coding-standard-js/actions/workflows/branch-validations.yaml/badge.svg" />
     </a>
