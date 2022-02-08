@@ -19,14 +19,25 @@ export const argumentSpacing = createRule({
     create(context) {
         function check(node: TSESTree.NewExpression | TSESTree.CallExpression) {
             const sourceCode = context.getSourceCode();
-            const firstToken = sourceCode.getFirstToken(node)!;
-            const lastToken = sourceCode.getLastToken(node)!;
 
-            if (node.arguments.length === 0 || firstToken.loc.start.line === lastToken.loc.end.line) {
+            if (node.arguments.length === 0) {
                 return;
             }
 
             const lastArgument = node.arguments[node.arguments.length - 1];
+
+            const firstToken = sourceCode.getTokenBefore(node.arguments[0], {
+                filter: token => token.value === '(',
+            })!;
+
+            const lastToken = sourceCode.getTokenAfter(lastArgument, {
+                filter: token => token.value === ')',
+            })!;
+
+            if (firstToken.loc.start.line === lastToken.loc.end.line) {
+                return;
+            }
+
             const lastArgumentFirstToken = sourceCode.getFirstToken(lastArgument)!;
 
             if (firstToken.loc.start.line === lastArgumentFirstToken.loc.start.line) {
@@ -34,13 +45,9 @@ export const argumentSpacing = createRule({
             }
 
             const tokens = [
-                sourceCode.getTokenBefore(node.arguments[0], {
-                    filter: token => token.value === '(',
-                }),
+                firstToken,
                 ...node.arguments,
-                sourceCode.getTokenAfter(lastArgument, {
-                    filter: token => token.value === ')',
-                }),
+                lastToken,
             ];
 
             for (let i = 1; i < tokens.length; i++) {

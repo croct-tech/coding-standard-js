@@ -18,7 +18,17 @@ ruleTester.run('argument-spacing', argumentSpacing, {
             );`,
         },
         {
+            code: `new Example(1, () => {
+                console.log('Example');
+            });`,
+        },
+        {
             code: `example(1, () => {
+                console.log('Example');
+            });`,
+        },
+        {
+            code: `new Example(() => {
                 console.log('Example');
             });`,
         },
@@ -35,6 +45,12 @@ ruleTester.run('argument-spacing', argumentSpacing, {
                 () => console.log(1),
                 [],
             );`,
+        },
+        {
+            code: `foo()
+            .first(1, 2)
+            .second(3, 4)
+            .done();`,
         },
     ],
     invalid: [
