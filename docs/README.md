@@ -1,4 +1,4 @@
-# Croct ESLint plugin
+# Croct ESLint Reference
 
 A set of ESLint rules that enforce best practices used in Croct projects.
 
@@ -18,8 +18,8 @@ To enable this preset, add the following to your `.eslintrc` file:
     "@croct"
   ],
   "extends": [
-    "plugin:@croct/javascript",
-  ],
+    "plugin:@croct/javascript"
+  ]
 }
 ```
 
@@ -35,8 +35,8 @@ To enable this preset, add the following to your `.eslintrc` file:
     "@croct"
   ],
   "extends": [
-    "plugin:@croct/typescript",
-  ],
+    "plugin:@croct/typescript"
+  ]
 }
 ```
 
@@ -50,12 +50,12 @@ To enable this preset, add the following to your `.eslintrc` file:
 
 ```json
 {
-  plugins: [
+  "plugins": [
     "@croct"
   ],
   "extends": [
-    "plugin:@croct/react",
-  ],
+    "plugin:@croct/react"
+  ]
 }
 ```
 
@@ -73,8 +73,9 @@ To enable this preset, add the following to your `.eslintrc` file:
     "@croct"
   ],
   "extends": [
-    "plugin:@croct/cypress",
-  ],
+    "plugin:@croct/cypress"
+  ]
+}
 ```
 
 This preset extends the JavaScript preset – no need to include it as well.
