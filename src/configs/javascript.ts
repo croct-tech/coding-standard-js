@@ -74,6 +74,10 @@ export const javascript = {
         'import/extensions': [
             'error',
             'never',
+            {
+                d: 'always',
+                json: 'always',
+            },
         ],
         'import/no-unresolved': 'off',
         indent: [
