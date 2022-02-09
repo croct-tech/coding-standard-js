@@ -22,7 +22,7 @@ export const typescript = {
                     allowNumber: false,
                     allowNullableObject: false,
                 }],
-                '@typescript-eslint/prefer-regexp-exec': 'error',
+                '@typescript-eslint/prefer-regexp-exec': 'off',
                 '@typescript-eslint/prefer-optional-chain': 'error',
                 'no-shadow': 'off',
                 '@typescript-eslint/no-shadow': ['error', {
