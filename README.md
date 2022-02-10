@@ -25,7 +25,7 @@
 
 ## Installation
 
-The recommended way to install the SDK is via [NPM](https://npmjs.com). It pairs nicely with module bundlers such as
+The recommended way to install the package is via [NPM](https://npmjs.com). It pairs nicely with module bundlers such as
 Webpack or Browserify:
 
 ```sh
