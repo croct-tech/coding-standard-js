@@ -13,12 +13,8 @@ export const javascript = {
     rules: {
         '@croct/argument-spacing': 'error',
         '@croct/complex-expression-spacing': 'error',
-        'newline-per-chained-call': [
-            'error',
-            {
-                ignoreChainWithDepth: 2,
-            },
-        ],
+        '@croct/newline-per-chained-call': 'error',
+        'newline-per-chained-call': 'off',
         'array-bracket-newline': [
             'error',
             'consistent',
