@@ -33,7 +33,7 @@ jobs:
 
       - name: Check dependency vulnerabilities
         run: |-
-          npm i -g npm-audit-resolver
+          npm i -g npm-audit-resolver@3.0.0-7
           npx check-audit
 
   validate:
