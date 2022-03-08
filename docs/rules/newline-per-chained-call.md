@@ -1,12 +1,12 @@
 # `newline-per-chained-call`
 
-Require a newline after each function call in a method chain.
+Requires a newline before each chained method call after reaching a configurable maximum depth.
 
 ## Rule details
 
-This rule complements the [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call)
-to enforce a new line after each chained function call, and also changing the ignoreChainWithDepth 
-behavior to break chained calls recursively when the limit is reached.
+This rule differs from the [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call)
+rule by enforcing a newline before each chained method call rather than only after the call that exceeded the maximum
+depth. Another difference is that this rule only applies to chained method calls, not to chained property accessors.
 
 ## How to use
 
@@ -54,23 +54,23 @@ foo.bar.baz.qux;
 
 ## Options
 
-This rule has no configuration options.
+These are the available options:
 
-* "ignoreChainWithDepth" (default: 2) allows chains up to a specified depth.
+### `ignoreChainWithDepth`
 
-### ignoreChainWithDepth
+Specifies the maximum depth of chained allowed, default is 2.
 
 #### ❌ Incorrect
 
 ```jsx
-/*eslint newline-per-chained-call: ["error", { "ignoreChainWithDepth": 1 }]*/
+/*eslint newline-per-chained-call: ["error", {"ignoreChainWithDepth": 1}]*/
 foo().bar().baz();
 ```
 
 #### ✅ Correct
 
 ```jsx
-/*eslint newline-per-chained-call: ["error", { "ignoreChainWithDepth": 1 }]*/
+/*eslint newline-per-chained-call: ["error", {"ignoreChainWithDepth": 1}]*/
 foo()
     .bar()
     .baz();

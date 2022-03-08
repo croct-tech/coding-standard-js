@@ -89,5 +89,6 @@ The plugin also ships with a few custom ESLint rules, all enabled by default in 
 | Rule                                                              | Description                                                                                         |
 |-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | [argument-spacing](rules/argument-spacing.md)                     | Enforces a surrounding line break before and after the argument list in multiline functional calls. |
+| [new-per-chained-call](rules/newline-per-chained-call)            | Enforces a surrounding line break in multiline JSX attributes.                                      |
 | [complex-expression-spacing](rules/complex-expression-spacing.md) | Enforces a surrounding line break in complex expression.                                            |
 | [jsx-attribute-spacing](rules/jsx-attribute-spacing.md)           | Enforces a surrounding line break in multiline JSX attributes.                                      |
