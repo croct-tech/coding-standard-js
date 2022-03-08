@@ -99,7 +99,11 @@ export const javascript = {
             'error',
             {
                 code: 100,
-                ignoreStrings: true,
+                ignoreStrings: false,
+                ignoreComments: false,
+                ignoreTemplateLiterals: false,
+                ignoreTrailingComments: false,
+                ignoreUrls: false,
             },
         ],
         'no-await-in-loop': 'off',
@@ -111,12 +115,6 @@ export const javascript = {
                 max: 1,
                 maxEOF: 0,
                 maxBOF: 0,
-            },
-        ],
-        'no-plusplus': [
-            'error',
-            {
-                allowForLoopAfterthoughts: true,
             },
         ],
         'no-unused-expressions': 'error',
