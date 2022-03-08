@@ -120,7 +120,8 @@ export const javascript = {
         'no-unused-vars': [
             'error',
             {
-                argsIgnorePattern: '^_',
+                args: 'after-used',
+                ignoreRestSiblings: true,
             },
         ],
         'no-restricted-syntax': [

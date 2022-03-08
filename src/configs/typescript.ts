@@ -45,7 +45,8 @@ export const typescript = {
                 '@typescript-eslint/no-unused-vars': [
                     'error',
                     {
-                        argsIgnorePattern: '^_',
+                        args: 'after-used',
+                        ignoreRestSiblings: true,
                     },
                 ],
                 'no-unused-vars': 'off',
