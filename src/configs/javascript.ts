@@ -117,7 +117,12 @@ export const javascript = {
             },
         ],
         'no-unused-expressions': 'error',
-        'no-unused-vars': 'error',
+        'no-unused-vars': [
+            'error',
+            {
+                argsIgnorePattern: '^_',
+            },
+        ],
         'no-restricted-syntax': [
             'error',
             'ForInStatement',

@@ -42,7 +42,12 @@ export const typescript = {
                 indent: ['error', 4, {
                     SwitchCase: 1,
                 }],
-                '@typescript-eslint/no-unused-vars': 'error',
+                '@typescript-eslint/no-unused-vars': [
+                    'error',
+                    {
+                        argsIgnorePattern: '^_',
+                    },
+                ],
                 'no-unused-vars': 'off',
                 '@typescript-eslint/no-non-null-assertion': 'off',
                 'object-curly-spacing': 'off',
