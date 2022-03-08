@@ -62,7 +62,10 @@ export const jsxAttributeSpacing = createRule({
                         end: currentToken.loc.start,
                     },
                     messageId: 'missing',
-                    fix: fixer => fixer.replaceTextRange([tokenBefore.range[1], currentToken.range[0]], '\n'),
+                    fix: fixer => fixer.replaceTextRange(
+                        [tokenBefore.range[1], currentToken.range[0]],
+                        '\n',
+                    ),
                 });
             }
         }
