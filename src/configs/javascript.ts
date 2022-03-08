@@ -96,7 +96,11 @@ export const javascript = {
             'error',
             {
                 code: 100,
-                ignoreStrings: true,
+                ignoreStrings: false,
+                ignoreComments: false,
+                ignoreTemplateLiterals: false,
+                ignoreTrailingComments: false,
+                ignoreUrls: false,
             },
         ],
         'no-await-in-loop': 'off',

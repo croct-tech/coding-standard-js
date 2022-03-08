@@ -8,7 +8,8 @@ export const argumentSpacing = createRule({
     meta: {
         type: 'suggestion',
         docs: {
-            description: 'Enforces a surrounding line break before and after the argument list in multiline functional calls.',
+            description: 'Enforces a surrounding line break before and after '
+                + 'the argument list in multiline functional calls.',
             recommended: 'error',
         },
         fixable: 'whitespace',
@@ -43,7 +44,10 @@ export const argumentSpacing = createRule({
             const lastArgumentFirstToken = sourceCode.getFirstToken(lastArgument)!;
 
             if (
-                (lastArgument.type !== 'ArrowFunctionExpression' || lastArgument.body.type === 'BlockStatement')
+                (
+                    lastArgument.type !== 'ArrowFunctionExpression'
+                    || lastArgument.body.type === 'BlockStatement'
+                )
                 && firstToken.loc.start.line === lastArgumentFirstToken.loc.start.line
             ) {
                 return;
@@ -72,7 +76,10 @@ export const argumentSpacing = createRule({
                             end: currentToken.loc.start,
                         },
                         messageId: 'missing',
-                        fix: fixer => fixer.replaceTextRange([tokenBefore.range[1], currentToken.range[0]], '\n'),
+                        fix: fixer => fixer.replaceTextRange(
+                            [tokenBefore.range[1], currentToken.range[0]],
+                            '\n',
+                        ),
                     });
                 }
             }
