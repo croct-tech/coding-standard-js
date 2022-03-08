@@ -129,11 +129,9 @@ export const newlinePerChainedCall = createRule({
 
         return {
             CallExpression: (node: TSESTree.CallExpression): void => {
-                if (node.callee == null || node.callee.type !== 'MemberExpression') {
-                    return;
+                if (node.callee?.type === 'MemberExpression') {
+                    validateCallExpressionIgnoreDepth(node);
                 }
-
-                validateCallExpressionIgnoreDepth(node);
             },
             MemberExpression: (node: TSESTree.MemberExpression): void => {
                 validateCallExpressionIgnoreDepth(node);
