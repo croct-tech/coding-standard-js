@@ -50,20 +50,8 @@ export const newlinePerChainedCall = createRule({
             return prefix + lines[0];
         }
 
-        function isTokenOnSameLine(
-            left: TSESTree.LeftHandSideExpression,
-            right: TSESTree.Expression | TSESTree.PrivateIdentifier,
-        ): boolean {
-            return left.loc.end.line === right.loc.start.line;
-        }
-
         function hasObjectAndPropertyOnSameLine(node: TSESTree.MemberExpression): boolean {
-            return (
-                isTokenOnSameLine(
-                    node.object,
-                    node.property,
-                )
-            );
+            return node.object.loc.end.line === node.property.loc.start.line;
         }
 
         function isNotClosingParenToken(token: TSESTree.Token): boolean {
