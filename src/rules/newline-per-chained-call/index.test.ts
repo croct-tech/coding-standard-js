@@ -71,7 +71,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: '_\n.chain({})\n.map(foo)\n.filter(bar).value();',
-            output: `_\n.chain({})\n.map(foo)\n.filter(bar)\n.value();`,
+            output: '_\n.chain({})\n.map(foo)\n.filter(bar)\n.value();',
             errors: [
                 {
                     messageId: 'expectedLineBreak',
@@ -82,7 +82,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'a().b().c().e.d()',
-            output: `a()\n.b()\n.c()\n.e\n.d()`,
+            output: 'a()\n.b()\n.c()\n.e\n.d()',
             errors: [
                 {
                     messageId: 'expectedLineBreak',
@@ -108,7 +108,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'a.b.c().e().d()',
-            output: `a\n.b\n.c()\n.e()\n.d()`,
+            output: 'a\n.b\n.c()\n.e()\n.d()',
             errors: [
                 {
                     line: 1,
@@ -134,7 +134,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: '_.chain({}).map(a).value();',
-            output: `_\n.chain({})\n.map(a)\n.value();`,
+            output: '_\n.chain({})\n.map(a)\n.value();',
             errors: [
                 {
                     line: 1,
@@ -155,7 +155,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'const a = m1().m2\n.m3().m4().m5().m6().m7();',
-            output: `const a = m1()\n.m2\n.m3()\n.m4()\n.m5()\n.m6()\n.m7();`,
+            output: 'const a = m1()\n.m2\n.m3()\n.m4()\n.m5()\n.m6()\n.m7();',
             options: [
                 {
                     ignoreChainWithDepth: 3,
@@ -191,7 +191,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: '(foo).bar().biz()',
-            output: `(foo)\n.bar()\n.biz()`,
+            output: '(foo)\n.bar()\n.biz()',
             options: [
                 {
                     ignoreChainWithDepth: 1,
@@ -212,7 +212,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'foo.bar(). /* comment */ biz()',
-            output: `foo\n.bar()\n. /* comment */ biz()`,
+            output: 'foo\n.bar()\n. /* comment */ biz()',
             options: [
                 {
                     ignoreChainWithDepth: 1,
@@ -233,7 +233,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'foo.bar() /* comment */ .biz()',
-            output: `foo\n.bar() /* comment */ \n.biz()`,
+            output: 'foo\n.bar() /* comment */ \n.biz()',
             options: [
                 {
                     ignoreChainWithDepth: 1,
