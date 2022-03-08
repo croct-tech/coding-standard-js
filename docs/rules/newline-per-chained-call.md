@@ -1,6 +1,6 @@
 # `newline-per-chained-call`
 
-Requires a newline before each chained method call after reaching a configurable maximum depth.
+Enforces a newline before each chained method call after reaching a configurable maximum depth.
 
 ## Rule details
 
