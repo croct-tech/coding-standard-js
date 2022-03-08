@@ -13,6 +13,7 @@ export const javascript = {
     rules: {
         '@croct/argument-spacing': 'error',
         '@croct/complex-expression-spacing': 'error',
+        'no-plusplus': 'off',
         'array-bracket-newline': [
             'error',
             'consistent',
@@ -112,12 +113,6 @@ export const javascript = {
                 max: 1,
                 maxEOF: 0,
                 maxBOF: 0,
-            },
-        ],
-        'no-plusplus': [
-            'error',
-            {
-                allowForLoopAfterthoughts: true,
             },
         ],
         'no-unused-expressions': 'error',
