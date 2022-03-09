@@ -28,6 +28,10 @@ These are examples of how the rule might apply.
 ### ❌ Incorrect
 
 ```jsx
+this.foo.block.bar.qux();
+```
+
+```jsx
 foo().bar().baz().qux();
 ```
 
@@ -36,6 +40,13 @@ foo.bar.baz.qux();
 ```
 
 ### ✅ Correct
+
+```jsx
+this.foo
+    .block
+    .bar
+    .qux();
+```
 
 ```jsx
 foo()

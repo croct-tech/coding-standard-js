@@ -103,8 +103,15 @@ export const newlinePerChainedCall = createRule({
                     && hasCallExpression
                     && memberExpressions.some(hasObjectAndPropertyOnSameLine)
                 ) {
-                    memberExpressions
-                        .filter(hasObjectAndPropertyOnSameLine)
+                    const expressionsOnSameLine = memberExpressions
+                        .filter(hasObjectAndPropertyOnSameLine);
+                    const rootNode = expressionsOnSameLine[expressionsOnSameLine.length - 1];
+
+                    if (rootNode.type === 'MemberExpression' && rootNode.object.type === 'ThisExpression') {
+                        expressionsOnSameLine.pop();
+                    }
+
+                    expressionsOnSameLine
                         .forEach(memberExpression => {
                             context.report({
                                 node: memberExpression.property,
