@@ -107,7 +107,10 @@ export const newlinePerChainedCall = createRule({
                         .filter(hasObjectAndPropertyOnSameLine);
                     const rootNode = expressionsOnSameLine[expressionsOnSameLine.length - 1];
 
-                    if (rootNode.type === 'MemberExpression' && rootNode.object.type === 'ThisExpression') {
+                    if (
+                        rootNode.type === 'MemberExpression'
+                        && rootNode.object.type === 'ThisExpression'
+                    ) {
                         expressionsOnSameLine.pop();
                     }
 
