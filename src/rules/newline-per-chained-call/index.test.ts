@@ -20,8 +20,8 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         {code: 'const a = m1();'},
         {code: 'a().b().c'},
         {code: 'const foo = a.b.c.e.d'},
-        {code: 'this.b().c'},
-        {code: 'this.b()\n.c\n.d'},
+        {code: 'this.a().b'},
+        {code: 'this.a()\n.b\n.c'},
         {code: "a.b.c.e.d = 'foo'"},
         {code: 'a().b().c()'},
         {code: 'const a = window\n.location\n.href\n.match(/(^[^#]*)/)[0];'},
@@ -46,8 +46,8 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
     ],
     invalid: [
         {
-            code: 'this.b.c.e.d()',
-            output: 'this.b\n.c\n.e\n.d()',
+            code: 'this.a.b.c.d()',
+            output: 'this.a\n.b\n.c\n.d()',
             errors: [
                 {
                     line: 1,
