@@ -14,6 +14,7 @@ export const javascript = {
         '@croct/argument-spacing': 'error',
         '@croct/complex-expression-spacing': 'error',
         '@croct/newline-per-chained-call': 'error',
+        '@croct/min-chained-call-depth': 'error',
         'newline-per-chained-call': 'off',
         'no-plusplus': 'off',
         'array-bracket-newline': [
