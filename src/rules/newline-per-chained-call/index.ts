@@ -109,7 +109,9 @@ export const newlinePerChainedCall = createRule({
 
                     if (
                         rootNode.type === 'MemberExpression'
-                        && rootNode.object.type === 'ThisExpression'
+                        && rootNode.parent?.type === 'CallExpression'
+                        && (rootNode.object.type === 'ThisExpression'
+                            || rootNode.object.type === 'Identifier')
                     ) {
                         expressionsOnSameLine.pop();
                     }
