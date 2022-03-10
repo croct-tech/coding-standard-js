@@ -22,6 +22,8 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         {code: 'const foo = a.b.c.e.d'},
         {code: 'this.a().b'},
         {code: 'this.a()\n.b\n.c'},
+        {code: 'this\n.a\n.b\n.c.d'},
+        {code: 'a.b()\n.b\n.c'},
         {code: "a.b.c.e.d = 'foo'"},
         {code: 'a().b().c()'},
         {code: 'const a = window\n.location\n.href\n.match(/(^[^#]*)/)[0];'},
@@ -47,8 +49,13 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
     invalid: [
         {
             code: 'this.a.b.c.d()',
-            output: 'this.a\n.b\n.c\n.d()',
+            output: 'this\n.a\n.b\n.c\n.d()',
             errors: [
+                {
+                    line: 1,
+                    column: 6,
+                    messageId: 'expectedLineBreak',
+                },
                 {
                     line: 1,
                     column: 8,
@@ -62,6 +69,22 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
                 {
                     line: 1,
                     column: 12,
+                    messageId: 'expectedLineBreak',
+                },
+            ],
+        },
+        {
+            code: 'a.b().c.d()',
+            output: 'a.b()\n.c\n.d()',
+            errors: [
+                {
+                    line: 1,
+                    column: 7,
+                    messageId: 'expectedLineBreak',
+                },
+                {
+                    line: 1,
+                    column: 9,
                     messageId: 'expectedLineBreak',
                 },
             ],
@@ -157,13 +180,8 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: '_.chain({}).map(a).value();',
-            output: '_\n.chain({})\n.map(a)\n.value();',
+            output: '_.chain({})\n.map(a)\n.value();',
             errors: [
-                {
-                    line: 1,
-                    column: 3,
-                    messageId: 'expectedLineBreak',
-                },
                 {
                     line: 1,
                     column: 13,
@@ -214,18 +232,13 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: '(foo).bar().biz()',
-            output: '(foo)\n.bar()\n.biz()',
+            output: '(foo).bar()\n.biz()',
             options: [
                 {
                     ignoreChainWithDepth: 1,
                 },
             ],
             errors: [
-                {
-                    messageId: 'expectedLineBreak',
-                    line: 1,
-                    column: 7,
-                },
                 {
                     messageId: 'expectedLineBreak',
                     line: 1,
@@ -235,18 +248,13 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'foo.bar(). /* comment */ biz()',
-            output: 'foo\n.bar()\n. /* comment */ biz()',
+            output: 'foo.bar()\n. /* comment */ biz()',
             options: [
                 {
                     ignoreChainWithDepth: 1,
                 },
             ],
             errors: [
-                {
-                    messageId: 'expectedLineBreak',
-                    line: 1,
-                    column: 5,
-                },
                 {
                     messageId: 'expectedLineBreak',
                     line: 1,
@@ -256,18 +264,13 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'foo.bar() /* comment */ .biz()',
-            output: 'foo\n.bar() /* comment */ \n.biz()',
+            output: 'foo.bar() /* comment */ \n.biz()',
             options: [
                 {
                     ignoreChainWithDepth: 1,
                 },
             ],
             errors: [
-                {
-                    messageId: 'expectedLineBreak',
-                    line: 1,
-                    column: 5,
-                },
                 {
                     messageId: 'expectedLineBreak',
                     line: 1,
