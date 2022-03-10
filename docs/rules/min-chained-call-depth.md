@@ -1,6 +1,7 @@
 # `min-chained-call-depth`
 
-Enforces the minimum of 2 chained calls to be on the same line before allowing the following chained calls to have line breaks.
+Enforces a minimum of chained method calls to allow multiline chains, except when the chain is too long to fit on a
+single line.
 
 ## How to use
 
@@ -36,8 +37,10 @@ expect(screen.getElementById("very-long-identifier"))
 ### ✅ Correct
 
 ```jsx
+expect(screen.getElementById("very-long-identifier")).toBe(true);
+
 expect(screen.getElementById("very-long-identifier"))
-    // comment
+    // ...
     .toBe(true);
 ```
 
@@ -53,7 +56,8 @@ These are the available options:
 
 ### `maxLineLength`
 
-Specifies the maximum line length before allowing breaking chained calls, default is 100.
+Specifies the maximum line length so that the rule allows breaking into multiple lines cases that 
+otherwise would not be permitted to avoid exceeding the line length limit.
 
 #### ❌ Incorrect
 

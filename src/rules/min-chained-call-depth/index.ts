@@ -8,7 +8,7 @@ export const minChainedCallDepth = createRule({
     meta: {
         type: 'layout',
         docs: {
-            description: 'Require a minimum depth to allow multiline chained calls.',
+            description: 'Enforces a minimum depth for multiline chained calls.',
             recommended: 'error',
         },
         fixable: 'whitespace',
