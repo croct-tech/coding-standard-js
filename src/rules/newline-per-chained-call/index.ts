@@ -114,25 +114,24 @@ export const newlinePerChainedCall = createRule({
                         expressionsOnSameLine.pop();
                     }
 
-                    expressionsOnSameLine
-                        .forEach(memberExpression => {
-                            context.report({
-                                node: memberExpression.property,
-                                loc: memberExpression.property.loc.start,
-                                messageId: 'expectedLineBreak',
-                                data: {
-                                    propertyName: getPropertyText(memberExpression),
-                                },
-                                fix: fixer => {
-                                    const firstTokenAfterObject = sourceCode.getTokenAfter(
-                                        memberExpression.object,
-                                        isNotClosingParenToken,
-                                    );
+                    expressionsOnSameLine.forEach(memberExpression => {
+                        context.report({
+                            node: memberExpression.property,
+                            loc: memberExpression.property.loc.start,
+                            messageId: 'expectedLineBreak',
+                            data: {
+                                propertyName: getPropertyText(memberExpression),
+                            },
+                            fix: fixer => {
+                                const firstTokenAfterObject = sourceCode.getTokenAfter(
+                                    memberExpression.object,
+                                    isNotClosingParenToken,
+                                );
 
-                                    return fixer.insertTextBefore(firstTokenAfterObject!, '\n');
-                                },
-                            });
+                                return fixer.insertTextBefore(firstTokenAfterObject!, '\n');
+                            },
                         });
+                    });
                 }
             }
         }
