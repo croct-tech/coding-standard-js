@@ -44,8 +44,7 @@ export const newlinePerChainedCall = createRule({
 
         function getPropertyText(node: TSESTree.MemberExpression): string {
             const prefix = '.';
-            const lines = sourceCode.getText(node.property)
-                .split(LINEBREAK_MATCHER);
+            const lines = sourceCode.getText(node.property).split(LINEBREAK_MATCHER);
 
             return prefix + lines[0];
         }
@@ -109,7 +108,8 @@ export const newlinePerChainedCall = createRule({
 
                     if (
                         rootNode.type === 'MemberExpression'
-                        && rootNode.parent?.type === 'CallExpression'
+                        && (rootNode.parent?.type === 'CallExpression'
+                            || rootNode.parent?.type === 'MemberExpression')
                         && (rootNode.object.type === 'ThisExpression'
                             || rootNode.object.type === 'Identifier')
                     ) {
