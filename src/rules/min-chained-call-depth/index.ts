@@ -74,7 +74,7 @@ export const minChainedCallDepth = createRule({
 
             // If the node is a call expression we need to validate it's callee as a member
             // expression.
-            // If the node itself already is a member expression, like the
+            // If the node itself is already a member expression, like the
             // `property` in `this.property.function()`, we validate the node directly.
             const callee = node.type === 'CallExpression' ? node.callee : node;
 
