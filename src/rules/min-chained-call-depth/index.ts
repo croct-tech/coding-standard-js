@@ -47,33 +47,57 @@ export const minChainedCallDepth = createRule({
             ) {
                 if (currentNode.type === 'MemberExpression') {
                     currentNode = currentNode.object;
+
+                    depth += 1;
                 } else if (currentNode.type === 'CallExpression') {
                     currentNode = currentNode.callee;
                 }
-
-                depth += 1;
             }
 
             return depth;
         }
 
-        function check(node: TSESTree.CallExpression): void {
+        function check(node: TSESTree.CallExpression | TSESTree.MemberExpression): void {
+            // If the node is a member expression inside a call expression skip, this is to ensure
+            // that we consider the correct line length of the result.
+            //
+            // Example:
+            //     ```ts
+            //     foo
+            //        .bar();
+            //     ```
+            //     The replacement of this input should be `foo.bar();`, which has 10 character.
+            //     Without this check it would consider the length up to `r`, which is 7.
+            if (node.type === 'MemberExpression' && node.parent?.type === 'CallExpression') {
+                return;
+            }
+
+            // If the node is a call expression we need to validate it's callee as a member
+            // expression.
+            // If the node itself is already a member expression, like the
+            // `property` in `this.property.function()`, we validate the node directly.
+            const callee = node.type === 'CallExpression' ? node.callee : node;
+
             if (
-                node.parent?.type === 'MemberExpression'
-                || node.parent?.type === 'CallExpression'
-                || node.callee.type !== 'MemberExpression'
-                || node.callee.computed
-                || node.callee.object.loc.end.line === node.callee.property.loc.start.line
+                // If the callee is not a member expression, we can skip.
+                // For example, root level calls like `foo();`.
+                callee.type !== 'MemberExpression'
+                // If the callee is a computed member expression, like `foo[bar]()`, we can skip.
+                || callee.computed
+                // If the callee is already in the same line as it's object, we can skip.
+                || callee.object.loc.end.line === callee.property.loc.start.line
             ) {
                 return;
             }
 
-            if (getDepth(node) > 3) {
+            // We only inline the first level of chained calls.
+            // If the current call is nested inside another call, we can skip.
+            if (getDepth(callee) > 1) {
                 return;
             }
 
             const {maxLineLength = 100} = context.options[0] ?? {};
-            const {property} = node.callee;
+            const {property} = callee;
             const lastToken = sourceCode.getLastToken(node, {
                 filter: token => token.loc.end.line === property.loc.start.line,
             })!;
@@ -86,7 +110,7 @@ export const minChainedCallDepth = createRule({
                 ),
             });
 
-            const lineLength = node.callee.object.loc.end.column
+            const lineLength = callee.object.loc.end.column
                 + lastToken.loc.end.column - property.loc.start.column
                 + 1
                 + (semicolon !== null ? 1 : 0);
@@ -95,7 +119,7 @@ export const minChainedCallDepth = createRule({
                 return;
             }
 
-            const punctuator = sourceCode.getTokenBefore(node.callee.property)!;
+            const punctuator = sourceCode.getTokenBefore(callee.property)!;
 
             const previousToken = sourceCode.getTokenBefore(punctuator, {includeComments: true})!;
             const nextToken = sourceCode.getTokenAfter(punctuator, {includeComments: true})!;
@@ -107,8 +131,8 @@ export const minChainedCallDepth = createRule({
             context.report({
                 node: node,
                 loc: {
-                    start: node.callee.object.loc.end,
-                    end: node.callee.property.loc.start,
+                    start: callee.object.loc.end,
+                    end: callee.property.loc.start,
                 },
                 messageId: 'unexpectedLineBreak',
                 fix: fixer => fixer.replaceTextRange(
@@ -120,6 +144,9 @@ export const minChainedCallDepth = createRule({
 
         return {
             CallExpression: (node: TSESTree.CallExpression): void => {
+                check(node);
+            },
+            MemberExpression: (node: TSESTree.MemberExpression): void => {
                 check(node);
             },
         };
