@@ -14,6 +14,7 @@ export const react = {
         'testing-library',
         'jest-dom',
         '@croct',
+        'sort-keys-fix',
     ],
     rules: {
         '@croct/jsx-attribute-spacing': 'error',
@@ -118,4 +119,12 @@ export const react = {
             },
         ],
     },
+    overrides: [
+        {
+            files: ['**/styles.ts'],
+            rules: {
+                'sort-keys-fix/sort-keys-fix': 'error',
+            },
+        },
+    ],
 };
