@@ -22,7 +22,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         {code: 'const foo = a.b.c.e.d'},
         {code: 'this.a().b'},
         {code: 'this.a()\n.b\n.c'},
-        {code: 'this\n.a\n.b\n.c.d'},
+        {code: 'this.a\n.b\n.c.d'},
         {code: 'a.b()\n.b\n.c'},
         {code: "a.b.c.e.d = 'foo'"},
         {code: 'a().b().c()'},
@@ -48,14 +48,20 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
     ],
     invalid: [
         {
-            code: 'this.a.b.c.d()',
-            output: 'this\n.a\n.b\n.c\n.d()',
+            code: 'this\n.a\n.b\n.c\n.d()',
+            output: 'this.a\n.b\n.c\n.d()',
             errors: [
                 {
                     line: 1,
                     column: 6,
                     messageId: 'expectedLineBreak',
                 },
+            ],
+        },
+        {
+            code: 'this.a.b.c.d()',
+            output: 'this.a\n.b\n.c\n.d()',
+            errors: [
                 {
                     line: 1,
                     column: 8,
@@ -91,13 +97,8 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'a.b.c.e.d()',
-            output: 'a\n.b\n.c\n.e\n.d()',
+            output: 'a.b\n.c\n.e\n.d()',
             errors: [
-                {
-                    line: 1,
-                    column: 3,
-                    messageId: 'expectedLineBreak',
-                },
                 {
                     line: 1,
                     column: 5,
@@ -154,13 +155,8 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
         },
         {
             code: 'a.b.c().e().d()',
-            output: 'a\n.b\n.c()\n.e()\n.d()',
+            output: 'a.b\n.c()\n.e()\n.d()',
             errors: [
-                {
-                    line: 1,
-                    column: 3,
-                    messageId: 'expectedLineBreak',
-                },
                 {
                     line: 1,
                     column: 5,
