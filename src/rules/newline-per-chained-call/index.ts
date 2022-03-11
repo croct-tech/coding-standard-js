@@ -29,7 +29,6 @@ export const newlinePerChainedCall = createRule({
         ],
         messages: {
             expectedLineBreak: 'Expected line break before `{{propertyName}}`.',
-            unexpectedLineBreak: 'Unexpected line break after `{{propertyName}}`.',
         },
     },
     defaultOptions: [
