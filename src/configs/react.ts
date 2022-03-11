@@ -118,4 +118,12 @@ export const react = {
             },
         ],
     },
+    overrides: [
+        {
+            files: ['**/styles.ts'],
+            rules: {
+                'sort-keys': 'error',
+            },
+        },
+    ],
 };
