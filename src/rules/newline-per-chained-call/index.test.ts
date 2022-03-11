@@ -48,17 +48,6 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
     ],
     invalid: [
         {
-            code: 'this\n.a\n.b\n.c\n.d()',
-            output: 'this.a\n.b\n.c\n.d()',
-            errors: [
-                {
-                    line: 1,
-                    column: 6,
-                    messageId: 'expectedLineBreak',
-                },
-            ],
-        },
-        {
             code: 'this.a.b.c.d()',
             output: 'this.a\n.b\n.c\n.d()',
             errors: [
