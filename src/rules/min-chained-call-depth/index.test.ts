@@ -19,7 +19,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             code: '                    const expressionsOnSameLine = memberExpressions'
                 + '\n.filter(hasObjectAndPropertyOnSameLine);',
         },
-        {code: 'a()\n.b()\n.c();'},
+        {code: 'a().b()\n.c();'},
         {
             code: 'expect(screen.getElementById("very-long-identifier"))\n.toBe(true);',
             options: [
@@ -38,6 +38,61 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
         },
     ],
     invalid: [
+        {
+            code: 'a()\n.b()\n.c();',
+            output: 'a().b()\n.c();',
+            errors: [
+                {
+                    line: 1,
+                    column: 4,
+                    messageId: 'unexpectedLineBreak',
+                },
+            ],
+        },
+        {
+            code: 'a()\n.b\n.c();',
+            output: 'a().b\n.c();',
+            errors: [
+                {
+                    line: 1,
+                    column: 4,
+                    messageId: 'unexpectedLineBreak',
+                },
+            ],
+        },
+        {
+            code: 'a\n.b()\n.c();',
+            output: 'a.b()\n.c();',
+            errors: [
+                {
+                    line: 1,
+                    column: 2,
+                    messageId: 'unexpectedLineBreak',
+                },
+            ],
+        },
+        {
+            code: 'a()\n.b()\n.c()\n.d();',
+            output: 'a().b()\n.c()\n.d();',
+            errors: [
+                {
+                    line: 1,
+                    column: 4,
+                    messageId: 'unexpectedLineBreak',
+                },
+            ],
+        },
+        {
+            code: 'a()\n.b();',
+            output: 'a().b();',
+            errors: [
+                {
+                    line: 1,
+                    column: 4,
+                    messageId: 'unexpectedLineBreak',
+                },
+            ],
+        },
         {
             code: 'expect(screen.getElementById("very-long-identifier"))\n.toBe(true)',
             output: 'expect(screen.getElementById("very-long-identifier")).toBe(true)',
