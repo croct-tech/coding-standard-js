@@ -202,6 +202,7 @@ export const javascript = {
                 ],
             },
         ],
+        'no-useless-escape': 'error',
     },
     overrides: [
         {
