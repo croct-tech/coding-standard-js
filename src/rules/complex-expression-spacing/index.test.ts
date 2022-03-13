@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {ESLintUtils} from '@typescript-eslint/utils';
 import {complexExpressionSpacing} from './index';
 
