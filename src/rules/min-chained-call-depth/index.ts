@@ -1,4 +1,8 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/*
+    eslint-disable @typescript-eslint/no-non-null-assertion
+    --
+    Disable the rule to reduce the number of branches
+*/
 import {TSESTree} from '@typescript-eslint/experimental-utils';
 import {isCommentToken} from '@typescript-eslint/utils/dist/ast-utils';
 import {createRule} from '../createRule';

@@ -2,6 +2,7 @@ export const javascript = {
     extends: [
         'plugin:jest/recommended',
         'airbnb-base',
+        'plugin:eslint-comments/recommended',
     ],
     plugins: [
         'jest',
@@ -15,6 +16,13 @@ export const javascript = {
         '@croct/complex-expression-spacing': 'error',
         '@croct/newline-per-chained-call': 'error',
         '@croct/min-chained-call-depth': 'error',
+        'eslint-comments/disable-enable-pair': [
+            'error',
+            {
+                allowWholeFile: true,
+            },
+        ],
+        'eslint-comments/require-description': 'error',
         'newline-per-chained-call': 'off',
         'no-plusplus': 'off',
         'array-bracket-newline': [
