@@ -16,6 +16,7 @@ export const javascript = {
         '@croct/complex-expression-spacing': 'error',
         '@croct/newline-per-chained-call': 'error',
         '@croct/min-chained-call-depth': 'error',
+        '@croct/parameter-destructuring': 'error',
         'eslint-comments/disable-enable-pair': [
             'error',
             {
