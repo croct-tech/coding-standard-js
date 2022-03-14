@@ -13,6 +13,7 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run('parameter-destructuring', parameterDestructuring, {
     valid: [
         {code: 'function foo({content}) {}'},
+        {code: 'function evaluate(expression, {timeout}) {}'},
         {code: 'const foo = function ({content}) {}'},
         {code: 'class Foo { someMethod({content}) {} }'},
         {code: '({content}) => {}'},

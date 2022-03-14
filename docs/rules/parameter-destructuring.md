@@ -50,9 +50,8 @@ foo(({
 ### ✅ Correct
 
 ```js
-function getPosts(includedFields, options) {
+function getPosts(includedFields, {cache}) {
     const {title, body, tags} = includedFields;
-    const {cache} = options;
 }
 ```
 

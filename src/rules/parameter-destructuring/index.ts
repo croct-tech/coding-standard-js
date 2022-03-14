@@ -42,10 +42,7 @@ export const parameterDestructuring = createRule({
                 }
 
                 // Allow one-line destructuring
-                if (
-                    parent.loc.start.line === node.loc.start.line
-                    && parent.loc.start.line === node.loc.end.line
-                ) {
+                if (node.loc.start.line === node.loc.end.line) {
                     return;
                 }
 
