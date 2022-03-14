@@ -9,6 +9,7 @@ export const javascript = {
         'import',
         'no-smart-quotes',
         'import-newlines',
+        'newline-destructuring',
         '@croct',
     ],
     rules: {
@@ -212,6 +213,9 @@ export const javascript = {
             },
         ],
         'no-useless-escape': 'error',
+        'newline-destructuring/newline': ['error', {
+            maxLength: 100,
+        }],
     },
     overrides: [
         {
