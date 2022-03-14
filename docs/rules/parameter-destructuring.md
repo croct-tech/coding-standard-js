@@ -70,36 +70,8 @@ foo(plan => {
 });
 ```
 
-```jsx
+```js
 foo(({name, description}) => `${name}: ${description}`);
-```
-
-## Options
-
-These are the available options:
-
-### `allowSingleLine`
-
-Specifies whether to allow destructuring functions with a single parameter if the entire declaration is a single line.
-
-Default: `true`
-
-#### ❌ Incorrect
-
-```jsx
-/*eslint parameter-destructuring: ["error", {"allowSingleLine": false}]*/
-foo(({name, description}) => `${name}: ${description}`);
-```
-
-#### ✅ Correct
-
-```jsx
-/*eslint parameter-destructuring: ["error", {"allowSingleLine": false}]*/
-foo(content => {
-    const {name, description} = content;
-
-    return `${name}: ${description}`;
-});
 ```
 
 ## Attributes

@@ -16,17 +16,7 @@ export const parameterDestructuring = createRule({
             recommended: 'error',
         },
         hasSuggestions: true,
-        schema: [
-            {
-                type: 'object',
-                properties: {
-                    allowSingleLine: {
-                        type: 'boolean',
-                    },
-                },
-                additionalProperties: false,
-            },
-        ],
+        schema: [],
         messages: {
             unexpectedDestructuring: (
                 'Destructuring should not be done in the parameters. '
@@ -34,15 +24,8 @@ export const parameterDestructuring = createRule({
             ),
         },
     },
-    defaultOptions: [
-        {
-            allowSingleLine: true,
-        },
-    ],
+    defaultOptions: [],
     create: context => {
-        const options = context.options[0] ?? {};
-        const allowSingleLine = options.allowSingleLine ?? true;
-
         const sourceCode = context.getSourceCode();
 
         return {
@@ -58,11 +41,9 @@ export const parameterDestructuring = createRule({
                     return;
                 }
 
-                // Allow one-line destructuring when there is a single parameter
+                // Allow one-line destructuring
                 if (
-                    allowSingleLine
-                    && parent.params.length === 1
-                    && parent.loc.start.line === node.loc.start.line
+                    parent.loc.start.line === node.loc.start.line
                     && parent.loc.start.line === node.loc.end.line
                 ) {
                     return;
