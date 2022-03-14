@@ -22,11 +22,11 @@ It is better to use a names parameter and destructure the values in the function
 
 ## Examples
 
-These are examples of how the rule might apply.
+These are examples of how the rule might apply:
 
 ### ❌ Incorrect
 
-```jsx
+```js
 function getPosts(
     {
         title,
@@ -37,7 +37,7 @@ function getPosts(
 ) {}
 ```
 
-```jsx
+```js
 foo(({
     metadata: {
         name,
@@ -49,14 +49,14 @@ foo(({
 
 ### ✅ Correct
 
-```jsx
+```js
 function getPosts(includedFields, options) {
     const {title, body, tags} = includedFields;
     const {cache} = options;
 }
 ```
 
-```jsx
+```js
 foo(plan => {
     const {
         metadata: {
