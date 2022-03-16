@@ -10,6 +10,7 @@ export const typescript = {
             extends: ['plugin:@typescript-eslint/recommended'],
             parser: '@typescript-eslint/parser',
             rules: {
+                'import/export': 'off',
                 '@typescript-eslint/array-type': ['error', {
                     default: 'array-simple',
                 }],
