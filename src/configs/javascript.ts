@@ -213,9 +213,14 @@ export const javascript = {
             },
         ],
         'no-useless-escape': 'error',
-        'newline-destructuring/newline': ['error', {
-            maxLength: 100,
-        }],
+        'newline-destructuring/newline': [
+            'error',
+            {
+                maxLength: 100,
+                itemsWithRest: Infinity,
+                items: Infinity,
+            },
+        ],
     },
     overrides: [
         {
