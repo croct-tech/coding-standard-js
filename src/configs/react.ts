@@ -20,13 +20,16 @@ export const react = {
         '@croct/jsx-attribute-spacing': 'error',
         'react/jsx-wrap-multilines': 'error',
         'react/display-name': 'off',
+        'jsx-quotes': [
+            'error',
+            'prefer-double',
+        ],
         'react/jsx-newline': [
             'error',
             {
                 prevent: true,
             },
         ],
-
         'react/jsx-no-bind': [
             'error',
             {
