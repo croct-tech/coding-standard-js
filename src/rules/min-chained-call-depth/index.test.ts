@@ -13,6 +13,12 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
     valid: [
         {
+            code: 'Array(10)\n.fill(0)\n.map(foo => foo)\n.slice(1);',
+        },
+        {
+            code: 'Array(10).foo\n.fill(0)\n.map(foo => foo)\n.slice(1);',
+        },
+        {
             code: 'new StringSchema<ApiKeyPermission>()'
                 + '\n.required()'
                 + '\n.strict()'
@@ -54,6 +60,17 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
     ],
     invalid: [
         {
+            code: 'Array(10)\n.fill(10);',
+            output: 'Array(10).fill(10);',
+            errors: [
+                {
+                    line: 1,
+                    column: 10,
+                    messageId: 'unexpectedLineBreak',
+                },
+            ],
+        },
+        {
             code: 'a()\n.b()\n.c();',
             output: 'a().b()\n.c();',
             errors: [
@@ -82,17 +99,6 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
                 {
                     line: 1,
                     column: 2,
-                    messageId: 'unexpectedLineBreak',
-                },
-            ],
-        },
-        {
-            code: 'a()\n.b()\n.c()\n.d();',
-            output: 'a().b()\n.c()\n.d();',
-            errors: [
-                {
-                    line: 1,
-                    column: 4,
                     messageId: 'unexpectedLineBreak',
                 },
             ],

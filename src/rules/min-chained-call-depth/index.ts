@@ -40,6 +40,7 @@ export const minChainedCallDepth = createRule({
     ],
     create: context => {
         const sourceCode = context.getSourceCode();
+        let maxDepth = 0;
 
         function getDepth(node: TSESTree.MemberExpression | TSESTree.CallExpression): number {
             let depth = 0;
@@ -104,9 +105,31 @@ export const minChainedCallDepth = createRule({
                 return;
             }
 
+            const currentDepth = getDepth(callee);
+
+            maxDepth = Math.max(maxDepth, currentDepth);
+
             // We only inline the first level of chained calls.
             // If the current call is nested inside another call, we can skip.
-            if (getDepth(callee) > 1) {
+            if (currentDepth > 1) {
+                return;
+            }
+
+            // If the callee parent is a call expression and the max depth
+            // is greater than 2, we can skip.
+            //
+            // Example:
+            //     ```ts
+            //     Array(10)
+            //         .fill(0)
+            //         .map(x => x + 1)
+            //         .slice(0, 5);
+            //     ```
+            //     In this case, `fill` has a call expression parent, and the depth is 3.
+            if (
+                callee.parent?.type === AST_NODE_TYPES.CallExpression
+                && maxDepth > 2
+            ) {
                 return;
             }
 
