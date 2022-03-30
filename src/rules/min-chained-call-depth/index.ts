@@ -3,7 +3,7 @@
     --
     Disable the rule to reduce the number of branches
 */
-import {TSESTree} from '@typescript-eslint/experimental-utils';
+import {AST_TOKEN_TYPES, AST_NODE_TYPES, TSESTree} from '@typescript-eslint/experimental-utils';
 import {isCommentToken} from '@typescript-eslint/utils/dist/ast-utils';
 import {createRule} from '../createRule';
 
@@ -46,14 +46,14 @@ export const minChainedCallDepth = createRule({
             let currentNode: TSESTree.Node = node;
 
             while (
-                currentNode.type === 'CallExpression'
-                || currentNode.type === 'MemberExpression'
+                currentNode.type === AST_NODE_TYPES.CallExpression
+                || currentNode.type === AST_NODE_TYPES.MemberExpression
             ) {
-                if (currentNode.type === 'MemberExpression') {
+                if (currentNode.type === AST_NODE_TYPES.MemberExpression) {
                     currentNode = currentNode.object;
 
                     depth += 1;
-                } else if (currentNode.type === 'CallExpression') {
+                } else if (currentNode.type === AST_NODE_TYPES.CallExpression) {
                     currentNode = currentNode.callee;
                 }
             }
@@ -62,8 +62,8 @@ export const minChainedCallDepth = createRule({
         }
 
         function check(node: TSESTree.CallExpression | TSESTree.MemberExpression): void {
-            // If the node is a member expression inside a call expression skip, this is to ensure
-            // that we consider the correct line length of the result.
+            // If the node is a member expression inside a call/new expression skip,
+            // this is to ensure that we consider the correct line length of the result.
             //
             // Example:
             //     ```ts
@@ -72,22 +72,32 @@ export const minChainedCallDepth = createRule({
             //     ```
             //     The replacement of this input should be `foo.bar();`, which has 10 character.
             //     Without this check it would consider the length up to `r`, which is 7.
-            if (node.type === 'MemberExpression' && node.parent?.type === 'CallExpression') {
+            if (
+                node.type === AST_NODE_TYPES.MemberExpression
+                && node.parent?.type === AST_NODE_TYPES.CallExpression
+            ) {
                 return;
             }
 
-            // If the node is a call expression we need to validate it's callee as a member
+            // If the node is a call/new expression we need to validate it's callee as a member
             // expression.
             // If the node itself is already a member expression, like the
             // `property` in `this.property.function()`, we validate the node directly.
-            const callee = node.type === 'CallExpression' ? node.callee : node;
+            const callee = node.type === AST_NODE_TYPES.CallExpression
+                ? node.callee
+                : node;
 
             if (
                 // If the callee is not a member expression, we can skip.
                 // For example, root level calls like `foo();`.
-                callee.type !== 'MemberExpression'
+                callee.type !== AST_NODE_TYPES.MemberExpression
                 // If the callee is a computed member expression, like `foo[bar]()`, we can skip.
                 || callee.computed
+                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment --
+                * NewExpression is a possible callee object type
+                */
+                // @ts-ignore
+                || callee.object.type === AST_NODE_TYPES.NewExpression
                 // If the callee is already in the same line as it's object, we can skip.
                 || callee.object.loc.end.line === callee.property.loc.start.line
             ) {
@@ -109,7 +119,7 @@ export const minChainedCallDepth = createRule({
             const semicolon = sourceCode.getLastToken(node.parent!, {
                 filter: token => (
                     token.loc.start.line === property.loc.start.line
-                    && token.type === 'Punctuator'
+                    && token.type === AST_TOKEN_TYPES.Punctuator
                     && token.value === ';'
                 ),
             });
