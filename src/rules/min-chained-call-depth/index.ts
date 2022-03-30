@@ -41,25 +41,19 @@ export const minChainedCallDepth = createRule({
     create: context => {
         const sourceCode = context.getSourceCode();
 
-        function getDepth(
-            node: TSESTree.MemberExpression | TSESTree.CallExpression | TSESTree.NewExpression,
-        ): number {
+        function getDepth(node: TSESTree.MemberExpression | TSESTree.CallExpression): number {
             let depth = 0;
             let currentNode: TSESTree.Node = node;
 
             while (
                 currentNode.type === AST_NODE_TYPES.CallExpression
                 || currentNode.type === AST_NODE_TYPES.MemberExpression
-                || currentNode.type === AST_NODE_TYPES.NewExpression
             ) {
                 if (currentNode.type === AST_NODE_TYPES.MemberExpression) {
                     currentNode = currentNode.object;
 
                     depth += 1;
-                } else if (
-                    currentNode.type === AST_NODE_TYPES.CallExpression
-                    || currentNode.type === AST_NODE_TYPES.NewExpression
-                ) {
+                } else if (currentNode.type === AST_NODE_TYPES.CallExpression) {
                     currentNode = currentNode.callee;
                 }
             }
@@ -67,9 +61,7 @@ export const minChainedCallDepth = createRule({
             return depth;
         }
 
-        function check(
-            node: TSESTree.CallExpression | TSESTree.MemberExpression | TSESTree.NewExpression,
-        ): void {
+        function check(node: TSESTree.CallExpression | TSESTree.MemberExpression): void {
             // If the node is a member expression inside a call/new expression skip,
             // this is to ensure that we consider the correct line length of the result.
             //
@@ -82,10 +74,7 @@ export const minChainedCallDepth = createRule({
             //     Without this check it would consider the length up to `r`, which is 7.
             if (
                 node.type === AST_NODE_TYPES.MemberExpression
-                && (
-                    node.parent?.type === AST_NODE_TYPES.CallExpression
-                    || node.parent?.type === AST_NODE_TYPES.NewExpression
-                )
+                && node.parent?.type === AST_NODE_TYPES.CallExpression
             ) {
                 return;
             }
@@ -94,10 +83,7 @@ export const minChainedCallDepth = createRule({
             // expression.
             // If the node itself is already a member expression, like the
             // `property` in `this.property.function()`, we validate the node directly.
-            const callee = (
-                node.type === AST_NODE_TYPES.CallExpression
-                || node.type === AST_NODE_TYPES.NewExpression
-            )
+            const callee = node.type === AST_NODE_TYPES.CallExpression
                 ? node.callee
                 : node;
 
@@ -107,6 +93,11 @@ export const minChainedCallDepth = createRule({
                 callee.type !== AST_NODE_TYPES.MemberExpression
                 // If the callee is a computed member expression, like `foo[bar]()`, we can skip.
                 || callee.computed
+                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment --
+                * NewExpression is a possible callee object type
+                */
+                // @ts-ignore
+                || callee.object.type === AST_NODE_TYPES.NewExpression
                 // If the callee is already in the same line as it's object, we can skip.
                 || callee.object.loc.end.line === callee.property.loc.start.line
             ) {
@@ -167,9 +158,6 @@ export const minChainedCallDepth = createRule({
 
         return {
             CallExpression: (node: TSESTree.CallExpression): void => {
-                check(node);
-            },
-            NewExpression: (node: TSESTree.NewExpression): void => {
                 check(node);
             },
             MemberExpression: (node: TSESTree.MemberExpression): void => {

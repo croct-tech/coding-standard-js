@@ -13,12 +13,14 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
     valid: [
         {
-            code: 'new StringSchema<ApiKeyPermission>().required()'
+            code: 'new StringSchema<ApiKeyPermission>()'
+                + '\n.required()'
                 + '\n.strict()'
                 + '\n.oneOf(Object.values(ApiKeyPermission));',
         },
         {
-            code: 'new yup.StringSchema<ApiKeyPermission>().required()'
+            code: 'new yup.StringSchema<ApiKeyPermission>()'
+                + '\n.required()'
                 + '\n.strict()'
                 + '\n.oneOf(Object.values(ApiKeyPermission));',
         },
