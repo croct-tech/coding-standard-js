@@ -19,7 +19,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             code: 'Array(10).fill(0)\n.map(foo => foo)\n.slice(1);',
             options: [
                 {
-                    ignoreChainWithDepth: 3,
+                    ignoreChainDeeperThan: 2,
                 },
             ],
         },
@@ -72,7 +72,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             output: 'Array(10).fill(0)\n.map(foo => foo);',
             options: [
                 {
-                    ignoreChainWithDepth: 3,
+                    ignoreChainDeeperThan: 3,
                 },
             ],
             errors: [

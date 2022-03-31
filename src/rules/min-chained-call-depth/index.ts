@@ -25,7 +25,7 @@ export const minChainedCallDepth = createRule({
                         minimum: 1,
                         default: 100,
                     },
-                    ignoreChainWithDepth: {
+                    ignoreChainDeeperThan: {
                         type: 'integer',
                         minimum: 1,
                         maximum: 10,
@@ -44,7 +44,7 @@ export const minChainedCallDepth = createRule({
             maxLineLength: 100,
         },
         {
-            ignoreChainWithDepth: 2,
+            ignoreChainDeeperThan: 3,
         },
     ],
     create: context => {
@@ -124,9 +124,9 @@ export const minChainedCallDepth = createRule({
                 return;
             }
 
-            const {maxLineLength = 100, ignoreChainWithDepth = 2} = context.options[0] ?? {};
+            const {maxLineLength = 100, ignoreChainDeeperThan = 2} = context.options[0] ?? {};
 
-            // If the max depth is greater than ignoreChainWithDepth, we can skip.
+            // If the max depth is greater than ignoreChainDeeperThan, we can skip.
             //
             // Example:
             //     ```ts
@@ -135,9 +135,9 @@ export const minChainedCallDepth = createRule({
             //         .map(x => x + 1)
             //         .slice(0, 5);
             //     ```
-            //     In this case the depth is 3, and the default value of ignoreChainWithDepth is 2.
+            //     In this case the depth is 3, and the default value of ignoreChainDeeperThan is 2.
             //     So the check can be skipped.
-            if (maxDepth > ignoreChainWithDepth) {
+            if (maxDepth > ignoreChainDeeperThan) {
                 return;
             }
 

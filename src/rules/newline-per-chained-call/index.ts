@@ -21,7 +21,7 @@ export const newlinePerChainedCall = createRule({
             {
                 type: 'object',
                 properties: {
-                    ignoreChainWithDepth: {
+                    ignoreChainDeeperThan: {
                         type: 'integer',
                         minimum: 1,
                         maximum: 10,
@@ -37,12 +37,12 @@ export const newlinePerChainedCall = createRule({
     },
     defaultOptions: [
         {
-            ignoreChainWithDepth: 2,
+            ignoreChainDeeperThan: 2,
         },
     ],
     create: context => {
         const options = context.options[0] ?? {};
-        const ignoreChainWithDepth = options.ignoreChainWithDepth ?? 2;
+        const ignoreChainWithDepth = options.ignoreChainDeeperThan ?? 2;
 
         const sourceCode = context.getSourceCode();
 

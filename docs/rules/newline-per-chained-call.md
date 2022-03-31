@@ -67,7 +67,7 @@ foo.bar.baz.qux;
 
 These are the available options:
 
-### `ignoreChainWithDepth`
+### `ignoreChainDeeperThan`
 
 Specifies the maximum depth of chained allowed, default is 2.
 

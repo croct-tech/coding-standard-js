@@ -74,6 +74,27 @@ expect(screen.getElementById("very-long-identifier"))
     .toBe(true);
 ```
 
+### `ignoreChainDeeperThan`
+
+Chains that are deeper than the specified number are allowed to break line, default is 2.
+
+#### ❌ Incorrect
+
+```jsx
+Array(10)
+    .fill(0)
+    .map(foo => foo);
+```
+
+#### ✅ Correct
+
+```jsx
+/*eslint min-chained-call-depth: ["error", {"ignoreChainDeeperThan": 1}]*/
+Array(10)
+    .fill(0)
+    .map(foo => foo);
+```
+
 ## Attributes
 
 - [ ] ✅ Recommended
