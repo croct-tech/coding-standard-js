@@ -104,8 +104,8 @@ export const minChainedCallDepth = createRule({
                 // If the callee is a computed member expression, like `foo[bar]()`, skip.
                 || callee.computed
                 /* eslint-disable-next-line @typescript-eslint/ban-ts-comment --
-                * NewExpression is a possible callee object type
-                */
+                 * NewExpression is a possible callee object type
+                 */
                 // @ts-ignore
                 || callee.object.type === AST_NODE_TYPES.NewExpression
                 // If the callee is already in the same line as it's object, skip.
