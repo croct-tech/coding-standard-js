@@ -25,6 +25,12 @@ export const minChainedCallDepth = createRule({
                         minimum: 1,
                         default: 100,
                     },
+                    ignoreChainDeeperThan: {
+                        type: 'integer',
+                        minimum: 1,
+                        maximum: 10,
+                        default: 2,
+                    },
                 },
                 additionalProperties: false,
             },
@@ -37,9 +43,13 @@ export const minChainedCallDepth = createRule({
         {
             maxLineLength: 100,
         },
+        {
+            ignoreChainDeeperThan: 3,
+        },
     ],
     create: context => {
         const sourceCode = context.getSourceCode();
+        let maxDepth = 0;
 
         function getDepth(node: TSESTree.MemberExpression | TSESTree.CallExpression): number {
             let depth = 0;
@@ -88,29 +98,49 @@ export const minChainedCallDepth = createRule({
                 : node;
 
             if (
-                // If the callee is not a member expression, we can skip.
+                // If the callee is not a member expression, skip.
                 // For example, root level calls like `foo();`.
                 callee.type !== AST_NODE_TYPES.MemberExpression
-                // If the callee is a computed member expression, like `foo[bar]()`, we can skip.
+                // If the callee is a computed member expression, like `foo[bar]()`, skip.
                 || callee.computed
                 /* eslint-disable-next-line @typescript-eslint/ban-ts-comment --
-                * NewExpression is a possible callee object type
-                */
+                 * NewExpression is a possible callee object type
+                 */
                 // @ts-ignore
                 || callee.object.type === AST_NODE_TYPES.NewExpression
-                // If the callee is already in the same line as it's object, we can skip.
+                // If the callee is already in the same line as it's object, skip.
                 || callee.object.loc.end.line === callee.property.loc.start.line
             ) {
                 return;
             }
 
-            // We only inline the first level of chained calls.
-            // If the current call is nested inside another call, we can skip.
-            if (getDepth(callee) > 1) {
+            const currentDepth = getDepth(callee);
+
+            maxDepth = Math.max(maxDepth, currentDepth);
+
+            // Only affect the root level as the total depth is must be known.
+            // If the current call is nested inside another call, skip.
+            if (currentDepth > 1) {
                 return;
             }
 
-            const {maxLineLength = 100} = context.options[0] ?? {};
+            const {maxLineLength = 100, ignoreChainDeeperThan = 2} = context.options[0] ?? {};
+
+            // If the max depth is greater than ignore threshold, skip
+            //
+            // Example:
+            //     ```ts
+            //     Array(10)
+            //         .fill(0)
+            //         .map(x => x + 1)
+            //         .slice(0, 5);
+            //     ```
+            //     In this case the depth is 3, and the default value of ignoreChainDeeperThan is 2.
+            //     So the check can be skipped.
+            if (maxDepth > ignoreChainDeeperThan) {
+                return;
+            }
+
             const {property} = callee;
             const lastToken = sourceCode.getLastToken(node, {
                 filter: token => token.loc.end.line === property.loc.start.line,

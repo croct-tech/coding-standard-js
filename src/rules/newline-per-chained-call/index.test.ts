@@ -32,7 +32,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
             code: 'const a = m1().m2.m3().m4;',
             options: [
                 {
-                    ignoreChainWithDepth: 4,
+                    ignoreChainDeeperThan: 4,
                 },
             ],
         },
@@ -40,7 +40,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
             code: 'const a = m1().m2.m3().m4.m5().m6.m7().m8.m9();',
             options: [
                 {
-                    ignoreChainWithDepth: 8,
+                    ignoreChainDeeperThan: 8,
                 },
             ],
         },
@@ -183,7 +183,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
             output: 'const a = m1()\n.m2\n.m3()\n.m4()\n.m5()\n.m6()\n.m7();',
             options: [
                 {
-                    ignoreChainWithDepth: 3,
+                    ignoreChainDeeperThan: 3,
                 },
             ],
             errors: [
@@ -219,7 +219,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
             output: '(foo).bar()\n.biz()',
             options: [
                 {
-                    ignoreChainWithDepth: 1,
+                    ignoreChainDeeperThan: 1,
                 },
             ],
             errors: [
@@ -235,7 +235,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
             output: 'foo.bar()\n. /* comment */ biz()',
             options: [
                 {
-                    ignoreChainWithDepth: 1,
+                    ignoreChainDeeperThan: 1,
                 },
             ],
             errors: [
@@ -251,7 +251,7 @@ ruleTester.run('newline-per-chained-call', newlinePerChainedCall, {
             output: 'foo.bar() /* comment */ \n.biz()',
             options: [
                 {
-                    ignoreChainWithDepth: 1,
+                    ignoreChainDeeperThan: 1,
                 },
             ],
             errors: [
