@@ -25,6 +25,12 @@ export const minChainedCallDepth = createRule({
                         minimum: 1,
                         default: 100,
                     },
+                    ignoreChainWithDepth: {
+                        type: 'integer',
+                        minimum: 1,
+                        maximum: 10,
+                        default: 2,
+                    },
                 },
                 additionalProperties: false,
             },
@@ -36,6 +42,9 @@ export const minChainedCallDepth = createRule({
     defaultOptions: [
         {
             maxLineLength: 100,
+        },
+        {
+            ignoreChainWithDepth: 2,
         },
     ],
     create: context => {
@@ -115,8 +124,9 @@ export const minChainedCallDepth = createRule({
                 return;
             }
 
-            // If the callee parent is a call expression and the max depth
-            // is greater than 2, we can skip.
+            const {maxLineLength = 100, ignoreChainWithDepth = 2} = context.options[0] ?? {};
+
+            // If the max depth is greater than ignoreChainWithDepth, we can skip.
             //
             // Example:
             //     ```ts
@@ -125,15 +135,12 @@ export const minChainedCallDepth = createRule({
             //         .map(x => x + 1)
             //         .slice(0, 5);
             //     ```
-            //     In this case, `fill` has a call expression parent, and the depth is 3.
-            if (
-                callee.parent?.type === AST_NODE_TYPES.CallExpression
-                && maxDepth > 2
-            ) {
+            //     In this case the depth is 3, and the default value of ignoreChainWithDepth is 2.
+            //     So the check can be skipped.
+            if (maxDepth > ignoreChainWithDepth) {
                 return;
             }
 
-            const {maxLineLength = 100} = context.options[0] ?? {};
             const {property} = callee;
             const lastToken = sourceCode.getLastToken(node, {
                 filter: token => token.loc.end.line === property.loc.start.line,

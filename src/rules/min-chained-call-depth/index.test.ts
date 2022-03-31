@@ -16,7 +16,15 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             code: 'Array(10)\n.fill(0)\n.map(foo => foo)\n.slice(1);',
         },
         {
-            code: 'Array(10).foo\n.fill(0)\n.map(foo => foo)\n.slice(1);',
+            code: 'Array(10).fill(0)\n.map(foo => foo)\n.slice(1);',
+            options: [
+                {
+                    ignoreChainWithDepth: 3,
+                },
+            ],
+        },
+        {
+            code: 'Array(10)\n.foo\n.fill(0)\n.map(foo => foo)\n.slice(1);',
         },
         {
             code: 'new StringSchema<ApiKeyPermission>()'
@@ -59,6 +67,22 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
         },
     ],
     invalid: [
+        {
+            code: 'Array(10)\n.fill(0)\n.map(foo => foo);',
+            output: 'Array(10).fill(0)\n.map(foo => foo);',
+            options: [
+                {
+                    ignoreChainWithDepth: 3,
+                },
+            ],
+            errors: [
+                {
+                    line: 1,
+                    column: 10,
+                    messageId: 'unexpectedLineBreak',
+                },
+            ],
+        },
         {
             code: 'Array(10)\n.fill(10);',
             output: 'Array(10).fill(10);',
