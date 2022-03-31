@@ -89,7 +89,7 @@ Array(10)
 #### ✅ Correct
 
 ```jsx
-/*eslint min-chained-call-depth: ["error", {"ignoreChainDeeperThan": 1}]*/
+/* eslint min-chained-call-depth: ["error", {"ignoreChainDeeperThan": 1}] */
 Array(10)
     .fill(0)
     .map(foo => foo);
