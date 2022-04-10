@@ -19,6 +19,12 @@ export const react = {
         '@croct/jsx-attribute-spacing': 'error',
         'react/jsx-wrap-multilines': 'error',
         'react/display-name': 'off',
+        'react/jsx-sort-props': [
+            'error',
+            {
+                multiline: 'last',
+            },
+        ],
         'jsx-quotes': [
             'error',
             'prefer-double',
