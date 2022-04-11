@@ -22,6 +22,7 @@ export const react = {
         'react/jsx-sort-props': [
             'error',
             {
+                noSortAlphabetically: true,
                 multiline: 'last',
             },
         ],
