@@ -76,9 +76,6 @@ export const typescript = {
                 }],
                 'no-undef': 'off',
                 '@typescript-eslint/no-namespace': 'off',
-                '@typescript-eslint/no-redeclare': ['error', {
-                    ignoreDeclarationMerge: true,
-                }],
             },
         },
         {
