@@ -204,6 +204,8 @@ export const javascript = {
                 blankLine: 'always',
                 prev: '*',
                 next: [
+                    'break',
+                    'continue',
                     'return',
                     'if',
                     'function',
