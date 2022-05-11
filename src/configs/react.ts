@@ -17,6 +17,7 @@ export const react = {
     ],
     rules: {
         '@croct/jsx-attribute-spacing': 'error',
+        'react/destructuring-assignment': 'off',
         'react/jsx-wrap-multilines': 'error',
         'react/display-name': 'off',
         'react/jsx-sort-props': [
