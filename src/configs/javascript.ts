@@ -25,6 +25,7 @@ export const javascript = {
             },
         ],
         'eslint-comments/require-description': 'error',
+        'eslint-comments/no-unused-disable': 'error',
         'newline-per-chained-call': 'off',
         'no-plusplus': 'off',
         'array-bracket-newline': [
