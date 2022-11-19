@@ -1,8 +1,3 @@
-/*
- eslint-disable @typescript-eslint/no-non-null-assertion
- --
- Disable the rule to reduce the number of branches
- */
 import {AST_NODE_TYPES} from '@typescript-eslint/types';
 import {RuleFix} from '@typescript-eslint/utils/dist/ts-eslint';
 import {createRule} from '../createRule';
