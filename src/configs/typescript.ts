@@ -37,7 +37,12 @@ export const typescript = {
                 '@typescript-eslint/explicit-function-return-type': ['error'],
                 '@typescript-eslint/no-explicit-any': 'off',
                 'no-use-before-define': 'off',
-                '@typescript-eslint/no-use-before-define': 'error',
+                '@typescript-eslint/no-use-before-define': [
+                    'error',
+                    {
+                        functions: false,
+                    },
+                ],
                 'no-unused-expressions': 'off',
                 '@typescript-eslint/no-unused-expressions': 'error',
                 indent: ['error', 4, {
