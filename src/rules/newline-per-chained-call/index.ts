@@ -4,7 +4,7 @@
     Disable the rule to reduce the number of branches
 */
 import {TSESTree} from '@typescript-eslint/experimental-utils';
-import { Expression } from '@typescript-eslint/types/dist/generated/ast-spec';
+import {Expression} from '@typescript-eslint/types/dist/generated/ast-spec';
 import {createRule} from '../createRule';
 
 const LINEBREAK_MATCHER = /\r\n|[\r\n\u2028\u2029]/u;
