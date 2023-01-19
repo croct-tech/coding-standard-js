@@ -1,8 +1,3 @@
-/*
-    eslint-disable @typescript-eslint/no-non-null-assertion
-    --
-    Disable the rule to reduce the number of branches
-*/
 import {TSESTree} from '@typescript-eslint/experimental-utils';
 import {Expression} from '@typescript-eslint/types/dist/generated/ast-spec';
 import {createRule} from '../createRule';
