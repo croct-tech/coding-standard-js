@@ -78,7 +78,12 @@ export const javascript = {
         'no-shadow': 'error',
         'import/prefer-default-export': 'off',
         'import/no-extraneous-dependencies': 'off',
-        'no-use-before-define': 'error',
+        'no-use-before-define': [
+            'error',
+            {
+                functions: false,
+            },
+        ],
         'arrow-parens': [
             'error',
             'as-needed',
