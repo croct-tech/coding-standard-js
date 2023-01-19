@@ -1,4 +1,5 @@
 import {TSESTree} from '@typescript-eslint/experimental-utils';
+import {Expression} from '@typescript-eslint/types/dist/generated/ast-spec';
 import {createRule} from '../createRule';
 
 const LINEBREAK_MATCHER = /\r\n|[\r\n\u2028\u2029]/u;
@@ -72,7 +73,7 @@ export const newlinePerChainedCall = createRule({
             ) {
                 const memberExpressions = [];
 
-                let currentNode = (
+                let currentNode: Expression = (
                     node.type === 'CallExpression'
                         ? node.callee
                         : node
