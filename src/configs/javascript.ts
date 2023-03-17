@@ -219,6 +219,15 @@ export const javascript = {
                     'block-like',
                 ],
             },
+            {
+                blankLine: 'any',
+                prev: [
+                    'case',
+                ],
+                next: [
+                    'case',
+                ],
+            },
         ],
         'no-useless-escape': 'error',
         'newline-destructuring/newline': [
@@ -228,6 +237,10 @@ export const javascript = {
                 itemsWithRest: Infinity,
                 items: Infinity,
             },
+        ],
+        'jsx-quotes': [
+            'error',
+            'prefer-double',
         ],
     },
     overrides: [
