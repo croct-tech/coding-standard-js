@@ -219,6 +219,15 @@ export const javascript = {
                     'block-like',
                 ],
             },
+            {
+                blankLine: 'any',
+                prev: [
+                    'case',
+                ],
+                next: [
+                    'case',
+                ],
+            },
         ],
         'no-useless-escape': 'error',
         'newline-destructuring/newline': [
