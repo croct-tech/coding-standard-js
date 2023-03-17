@@ -229,6 +229,10 @@ export const javascript = {
                 items: Infinity,
             },
         ],
+        'jsx-quotes': [
+            'error',
+            'prefer-double',
+        ],
     },
     overrides: [
         {

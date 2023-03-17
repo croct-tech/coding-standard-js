@@ -27,10 +27,6 @@ export const react = {
                 multiline: 'last',
             },
         ],
-        'jsx-quotes': [
-            'error',
-            'prefer-double',
-        ],
         'react/jsx-newline': [
             'error',
             {
