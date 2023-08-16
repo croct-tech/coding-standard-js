@@ -1,4 +1,4 @@
-import {TSESTree} from '@typescript-eslint/experimental-utils';
+import {TSESTree} from '@typescript-eslint/utils';
 import {createRule} from '../createRule';
 
 export const jsxAttributeSpacing = createRule({
@@ -7,7 +7,7 @@ export const jsxAttributeSpacing = createRule({
         type: 'suggestion',
         docs: {
             description: 'Enforces a surrounding line break in multiline JSX attributes.',
-            recommended: 'error',
+            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [],

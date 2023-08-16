@@ -1,5 +1,5 @@
-import {AST_TOKEN_TYPES, AST_NODE_TYPES, TSESTree} from '@typescript-eslint/experimental-utils';
-import {isCommentToken} from '@typescript-eslint/utils/dist/ast-utils';
+import {AST_TOKEN_TYPES, AST_NODE_TYPES, TSESTree} from '@typescript-eslint/utils';
+import {isCommentToken} from '@typescript-eslint/utils/ast-utils';
 import {createRule} from '../createRule';
 
 export const minChainedCallDepth = createRule({
@@ -8,7 +8,7 @@ export const minChainedCallDepth = createRule({
         type: 'layout',
         docs: {
             description: 'Enforces a minimum depth for multiline chained calls.',
-            recommended: 'error',
+            recommended: 'stylistic',
         },
         fixable: 'whitespace',
         schema: [

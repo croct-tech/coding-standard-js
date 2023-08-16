@@ -37,8 +37,8 @@
   ],
   "dependencies": {
     "@rushstack/eslint-patch": "^1.1",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/experimental-utils": "^5.10",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/utils": "^6.4.0",
     "eslint-config-airbnb": "^19.0",
     "eslint-config-airbnb-base": "^15.0",
     "eslint-plugin-cypress": "^2.12",
@@ -58,9 +58,8 @@
     "@types/eslint": "^8.4",
     "@types/jest": "^29.0.0",
     "@types/semver": "^7.3.12",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@typescript-eslint/types": "^6.0.0",
-    "@typescript-eslint/utils": "^6.0.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "@typescript-eslint/types": "^6.4.0",
     "eslint": "^8.8",
     "eslint-plugin-eslint-plugin": "^5.0.0",
     "eslint-plugin-self": "^1.2.1",
@@ -69,7 +68,7 @@
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": ">= 5",
+    "@typescript-eslint/parser": ">= 6",
     "eslint": ">= 8"
   }
 }

@@ -1,4 +1,4 @@
-import {TSESTree} from '@typescript-eslint/experimental-utils';
+import {TSESTree} from '@typescript-eslint/utils';
 import {createRule} from '../createRule';
 
 export const argumentSpacing = createRule({
@@ -8,7 +8,7 @@ export const argumentSpacing = createRule({
         docs: {
             description: 'Enforces a surrounding line break before and after '
                 + 'the argument list in multiline functional calls.',
-            recommended: 'error',
+            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [],

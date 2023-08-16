@@ -1,5 +1,4 @@
-import {TSESTree} from '@typescript-eslint/experimental-utils';
-import {Expression} from '@typescript-eslint/types/dist/generated/ast-spec';
+import {TSESTree} from '@typescript-eslint/utils';
 import {createRule} from '../createRule';
 
 const LINEBREAK_MATCHER = /\r\n|[\r\n\u2028\u2029]/u;
@@ -10,7 +9,7 @@ export const newlinePerChainedCall = createRule({
         type: 'layout',
         docs: {
             description: 'Require a newline after each call in a method chain',
-            recommended: 'error',
+            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [
@@ -73,7 +72,7 @@ export const newlinePerChainedCall = createRule({
             ) {
                 const memberExpressions = [];
 
-                let currentNode: Expression = (
+                let currentNode: TSESTree.Expression = (
                     node.type === 'CallExpression'
                         ? node.callee
                         : node
