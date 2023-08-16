@@ -1,8 +1,8 @@
-import {ESLintUtils} from '@typescript-eslint/utils';
+import {RuleTester} from '@typescript-eslint/utils/ts-eslint';
 import {newlinePerChainedCall} from './index';
 
-const ruleTester = new ESLintUtils.RuleTester({
-    parser: '@typescript-eslint/parser',
+const ruleTester = new RuleTester({
+    parser: require.resolve('@typescript-eslint/parser'),
     parserOptions: {
         ecmaFeatures: {
             jsx: true,

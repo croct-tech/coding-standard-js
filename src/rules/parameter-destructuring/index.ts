@@ -1,5 +1,5 @@
-import {AST_NODE_TYPES} from '@typescript-eslint/types';
-import {RuleFix} from '@typescript-eslint/utils/dist/ts-eslint';
+import {AST_NODE_TYPES} from '@typescript-eslint/utils';
+import {RuleFix} from '@typescript-eslint/utils/ts-eslint';
 import {createRule} from '../createRule';
 
 export const parameterDestructuring = createRule({
@@ -8,7 +8,7 @@ export const parameterDestructuring = createRule({
         type: 'layout',
         docs: {
             description: 'Prevent noisy destructuring on parameters',
-            recommended: 'error',
+            recommended: 'recommended',
         },
         hasSuggestions: true,
         schema: [],
