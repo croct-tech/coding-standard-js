@@ -12,9 +12,9 @@
     <a href="https://github.com/croct-tech/coding-standard-js/actions/workflows/branch-validations.yaml">
         <img alt="Build" src="https://github.com/croct-tech/coding-standard-js/actions/workflows/branch-validations.yaml/badge.svg" />
     </a>
-    <a href="https://codeclimate.com/repos/620292a0376562495b002392/maintainability"><img alt="Maintainability" src="https://api.codeclimate.com/v1/badges/c1fe99959c642f53697b/maintainability" /></a>
-    <a href="https://codeclimate.com/repos/620292a0376562495b002392/test_coverage"><img alt="Coverage" src="https://api.codeclimate.com/v1/badges/c1fe99959c642f53697b/test_coverage" /></a>
-    <br />
+    <a href="https://qlty.sh/gh/croct-tech/projects/coding-standard-js"><img src="https://qlty.sh/badges/ec247c93-2b34-4051-8dc7-b346f947d95b/coverage.svg" alt="Code Coverage" /></a>
+<a href="https://qlty.sh/gh/croct-tech/projects/coding-standard-js"><img src="https://qlty.sh/badges/ec247c93-2b34-4051-8dc7-b346f947d95b/maintainability.svg" alt="Maintainability" /></a>
+<br />
     <br />
     <a href="https://github.com/croct-tech/coding-standard-js/releases">📦 Releases</a>
     ·
