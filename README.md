@@ -12,8 +12,6 @@
     <a href="https://github.com/croct-tech/coding-standard-js/actions/workflows/branch-validations.yaml">
         <img alt="Build" src="https://github.com/croct-tech/coding-standard-js/actions/workflows/branch-validations.yaml/badge.svg" />
     </a>
-    <a href="https://qlty.sh/gh/croct-tech/projects/coding-standard-js"><img src="https://qlty.sh/badges/ec247c93-2b34-4051-8dc7-b346f947d95b/coverage.svg" alt="Code Coverage" /></a>
-<a href="https://qlty.sh/gh/croct-tech/projects/coding-standard-js"><img src="https://qlty.sh/badges/ec247c93-2b34-4051-8dc7-b346f947d95b/maintainability.svg" alt="Maintainability" /></a>
 <br />
     <br />
     <a href="https://github.com/croct-tech/coding-standard-js/releases">📦 Releases</a>
