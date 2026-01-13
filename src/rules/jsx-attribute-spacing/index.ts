@@ -7,7 +7,6 @@ export const jsxAttributeSpacing = createRule({
         type: 'suggestion',
         docs: {
             description: 'Enforces a surrounding line break in multiline JSX attributes.',
-            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [],
@@ -22,7 +21,7 @@ export const jsxAttributeSpacing = createRule({
         function check(node: TSESTree.JSXAttribute): void {
             const {value} = node;
 
-            if (value === null || value.type !== 'JSXExpressionContainer') {
+            if (value?.type !== 'JSXExpressionContainer') {
                 return;
             }
 

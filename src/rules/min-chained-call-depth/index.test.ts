@@ -1,11 +1,12 @@
-import {RuleTester} from '@typescript-eslint/utils/ts-eslint';
+import {RuleTester} from '@typescript-eslint/rule-tester';
 import {minChainedCallDepth} from './index';
 
 const ruleTester = new RuleTester({
-    parser: require.resolve('@typescript-eslint/parser'),
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
+    languageOptions: {
+        parserOptions: {
+            ecmaFeatures: {
+                jsx: true,
+            },
         },
     },
 });
@@ -19,6 +20,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             code: 'Array(10).fill(0)\n.map(foo => foo)\n.slice(1);',
             options: [
                 {
+                    maxLineLength: 100,
                     ignoreChainDeeperThan: 2,
                 },
             ],
@@ -54,6 +56,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             options: [
                 {
                     maxLineLength: 64,
+                    ignoreChainDeeperThan: 3,
                 },
             ],
         },
@@ -62,6 +65,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             options: [
                 {
                     maxLineLength: 60,
+                    ignoreChainDeeperThan: 3,
                 },
             ],
         },
@@ -72,6 +76,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             output: 'Array(10).fill(0)\n.map(foo => foo);',
             options: [
                 {
+                    maxLineLength: 100,
                     ignoreChainDeeperThan: 3,
                 },
             ],
@@ -155,6 +160,7 @@ ruleTester.run('min-chained-call-depth', minChainedCallDepth, {
             options: [
                 {
                     maxLineLength: 60,
+                    ignoreChainDeeperThan: 3,
                 },
             ],
             errors: [

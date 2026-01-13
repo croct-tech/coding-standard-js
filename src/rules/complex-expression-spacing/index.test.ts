@@ -1,9 +1,7 @@
-import {RuleTester} from '@typescript-eslint/utils/ts-eslint';
+import {RuleTester} from '@typescript-eslint/rule-tester';
 import {complexExpressionSpacing} from './index';
 
-const ruleTester = new RuleTester({
-    parser: require.resolve('@typescript-eslint/parser'),
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run('complex-expression-spacing', complexExpressionSpacing, {
     valid: [

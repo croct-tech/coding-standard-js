@@ -9,7 +9,6 @@ export const newlinePerChainedCall = createRule({
         type: 'layout',
         docs: {
             description: 'Require a newline after each call in a method chain',
-            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [

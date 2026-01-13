@@ -8,7 +8,6 @@ export const argumentSpacing = createRule({
         docs: {
             description: 'Enforces a surrounding line break before and after '
                 + 'the argument list in multiline functional calls.',
-            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [],

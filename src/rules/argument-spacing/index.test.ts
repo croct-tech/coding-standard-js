@@ -1,9 +1,7 @@
-import {RuleTester} from '@typescript-eslint/utils/ts-eslint';
+import {RuleTester} from '@typescript-eslint/rule-tester';
 import {argumentSpacing} from './index';
 
-const ruleTester = new RuleTester({
-    parser: require.resolve('@typescript-eslint/parser'),
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run('argument-spacing', argumentSpacing, {
     valid: [
