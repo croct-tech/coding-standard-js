@@ -68,11 +68,5 @@
   "peerDependencies": {
     "@typescript-eslint/parser": ">= 8",
     "eslint": ">= 9"
-  },
-  "overrides": {
-    "@typescript-eslint/typescript-estree": "$@typescript-eslint/typescript-estree",
-    "@typescript-eslint/parser": "$@typescript-eslint/parser",
-    "@typescript-eslint/types": "$@typescript-eslint/types",
-    "eslint": "$eslint"
   }
 }

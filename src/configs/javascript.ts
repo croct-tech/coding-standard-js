@@ -20,7 +20,7 @@ export const javascript = {
         node: true,
     },
     rules: {
-        // Croct custom rules
+        // Custom rules
         '@croct/argument-spacing': 'error',
         '@croct/complex-expression-spacing': 'error',
         '@croct/newline-per-chained-call': 'error',
@@ -252,7 +252,7 @@ export const javascript = {
         'valid-jsdoc': 'off',
         'valid-typeof': ['error', {requireStringLiterals: true}],
 
-        // Style (from airbnb-base, with Croct customizations)
+        // Style (from airbnb-base, with customizations)
         'array-bracket-newline': ['error', 'consistent'],
         'array-element-newline': ['error', 'consistent'],
         'array-bracket-spacing': ['error', 'never'],

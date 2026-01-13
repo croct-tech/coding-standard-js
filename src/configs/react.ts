@@ -36,10 +36,10 @@ export const react = {
         ],
     },
     rules: {
-        // Croct custom rule
+        // Custom rule
         '@croct/jsx-attribute-spacing': 'error',
 
-        // React rules (from airbnb, with Croct customizations)
+        // React rules (from airbnb, with customizations)
         'react/display-name': 'off',
         'react/forbid-prop-types': ['error', {
             forbid: ['any', 'array', 'object'],
