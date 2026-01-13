@@ -36,7 +36,7 @@ export const minChainedCallDepth = createRule({
     defaultOptions: [
         {
             maxLineLength: 100,
-            ignoreChainDeeperThan: 3,
+            ignoreChainDeeperThan: 2,
         },
     ],
     create: context => {

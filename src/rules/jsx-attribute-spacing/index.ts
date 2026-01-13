@@ -21,7 +21,7 @@ export const jsxAttributeSpacing = createRule({
         function check(node: TSESTree.JSXAttribute): void {
             const {value} = node;
 
-            if (value === null || value.type !== 'JSXExpressionContainer') {
+            if (value?.type !== 'JSXExpressionContainer') {
                 return;
             }
 
