@@ -8,7 +8,6 @@ export const parameterDestructuring = createRule({
         type: 'layout',
         docs: {
             description: 'Prevent noisy destructuring on parameters',
-            recommended: 'recommended',
         },
         hasSuggestions: true,
         schema: [],

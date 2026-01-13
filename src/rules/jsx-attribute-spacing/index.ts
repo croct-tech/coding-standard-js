@@ -7,7 +7,6 @@ export const jsxAttributeSpacing = createRule({
         type: 'suggestion',
         docs: {
             description: 'Enforces a surrounding line break in multiline JSX attributes.',
-            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [],

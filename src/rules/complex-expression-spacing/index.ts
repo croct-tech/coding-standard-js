@@ -7,7 +7,6 @@ export const complexExpressionSpacing = createRule({
         type: 'suggestion',
         docs: {
             description: 'Enforces a surrounding line break in complex expression.',
-            recommended: 'recommended',
         },
         fixable: 'whitespace',
         schema: [],

@@ -8,7 +8,6 @@ export const minChainedCallDepth = createRule({
         type: 'layout',
         docs: {
             description: 'Enforces a minimum depth for multiline chained calls.',
-            recommended: 'stylistic',
         },
         fixable: 'whitespace',
         schema: [
@@ -37,8 +36,6 @@ export const minChainedCallDepth = createRule({
     defaultOptions: [
         {
             maxLineLength: 100,
-        },
-        {
             ignoreChainDeeperThan: 3,
         },
     ],
@@ -98,10 +95,6 @@ export const minChainedCallDepth = createRule({
                 callee.type !== AST_NODE_TYPES.MemberExpression
                 // If the callee is a computed member expression, like `foo[bar]()`, skip.
                 || callee.computed
-                /* eslint-disable-next-line @typescript-eslint/ban-ts-comment --
-                 * NewExpression is a possible callee object type
-                 */
-                // @ts-ignore
                 || callee.object.type === AST_NODE_TYPES.NewExpression
                 // If the callee is already in the same line as it's object, skip.
                 || callee.object.loc.end.line === callee.property.loc.start.line
