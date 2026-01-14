@@ -84,6 +84,9 @@ const baseRules: Linter.RulesRecord = {
 
     // Breaks with overloaded functions that implement both callback and Promise signatures
     '@typescript-eslint/no-misused-promises': 'off',
+
+    // Doesn't detect classes that implement `toString` method
+    '@typescript-eslint/no-base-to-string': 'off',
 };
 
 // Factory function to create TypeScript config with the plugin reference
