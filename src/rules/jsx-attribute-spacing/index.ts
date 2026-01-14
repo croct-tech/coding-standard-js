@@ -30,7 +30,7 @@ export const jsxAttributeSpacing = createRule({
 
             if (
                 (firstToken.type === 'Punctuator' && lastToken.type === 'Punctuator')
-                            || (firstToken.loc.start.line === lastToken.loc.end.line)
+                || (firstToken.loc.start.line === lastToken.loc.end.line)
             ) {
                 return;
             }

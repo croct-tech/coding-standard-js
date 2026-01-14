@@ -3,6 +3,7 @@
     "module": "node16",
     "target": "ES2020",
     "moduleResolution": "node16",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "noImplicitAny": true,
@@ -16,6 +17,7 @@
     "outDir": "dist",
     "downlevelIteration": true,
     "declaration": false,
+    "skipLibCheck": true,
     "lib": ["es6"]
   },
   "include": [
