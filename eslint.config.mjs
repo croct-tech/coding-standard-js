@@ -9,7 +9,7 @@ export default defineConfig(
         files: ['src/**/*.ts'],
         rules: {
             '@typescript-eslint/explicit-function-return-type': 'off',
-            // Many casts are necessary to account for libraries maitaining compatibility between v8 and v9
+            // Many casts are necessary to account for libraries maintaining compatibility between v8 and v9
             '@typescript-eslint/no-unsafe-assignment': 'off',
             '@typescript-eslint/no-unsafe-member-access': 'off',
             // ESLint plugin development expects default exports

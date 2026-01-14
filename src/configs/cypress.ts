@@ -1,8 +1,8 @@
-import type {Linter} from 'eslint';
+import type {Linter, ESLint} from 'eslint';
 import cypressPlugin from 'eslint-plugin-cypress';
 
 // Factory function to create Cypress config with the plugin reference
-export function createCypressConfig(plugin: any, javascriptConfig: Linter.Config[]): Linter.Config[] {
+export function createCypressConfig(plugin: ESLint.Plugin, javascriptConfig: Linter.Config[]): Linter.Config[] {
     return [
         ...javascriptConfig,
         {
