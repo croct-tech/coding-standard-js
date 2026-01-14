@@ -29,7 +29,7 @@ const baseRules: Linter.RulesRecord = {
         'error',
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/explicit-function-return-type': ['error'],
+    '@typescript-eslint/explicit-function-return-type': ['error', {allowExpressions: true}],
     '@typescript-eslint/no-explicit-any': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
@@ -81,12 +81,12 @@ const baseRules: Linter.RulesRecord = {
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unsafe-unary-minus': 'off',
-
     // Breaks with overloaded functions that implement both callback and Promise signatures
     '@typescript-eslint/no-misused-promises': 'off',
-
     // Doesn't detect classes that implement `toString` method
     '@typescript-eslint/no-base-to-string': 'off',
+    // Conflict with TS promise ignore explicitly (void Promise)
+    'no-void': 'off',
 };
 
 // Factory function to create TypeScript config with the plugin reference

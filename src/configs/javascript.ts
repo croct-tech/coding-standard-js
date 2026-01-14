@@ -453,7 +453,7 @@ const baseRules: Linter.RulesRecord = {
     'one-var': ['error', 'never'],
     '@stylistic/one-var-declaration-per-line': ['error', 'always'],
     'operator-assignment': ['error', 'always'],
-    '@stylistic/operator-linebreak': ['error', 'before', {overrides: {'=': 'none'}}],
+    '@stylistic/operator-linebreak': ['error', 'before', {overrides: {'=': 'ignore'}}],
     '@stylistic/padded-blocks': ['error', {
         blocks: 'never',
         classes: 'never',
