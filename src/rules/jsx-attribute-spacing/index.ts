@@ -21,7 +21,7 @@ export const jsxAttributeSpacing = createRule({
         function check(node: TSESTree.JSXAttribute): void {
             const {value} = node;
 
-            if (value?.type !== 'JSXExpressionContainer') {
+            if (value?.type !== TSESTree.AST_NODE_TYPES.JSXExpressionContainer) {
                 return;
             }
 
@@ -29,7 +29,8 @@ export const jsxAttributeSpacing = createRule({
             const lastToken = sourceCode.getLastToken(value.expression)!;
 
             if (
-                (firstToken.type === 'Punctuator' && lastToken.type === 'Punctuator')
+                (firstToken.type === TSESTree.AST_TOKEN_TYPES.Punctuator
+                    && lastToken.type === TSESTree.AST_TOKEN_TYPES.Punctuator)
                 || (firstToken.loc.start.line === lastToken.loc.end.line)
             ) {
                 return;

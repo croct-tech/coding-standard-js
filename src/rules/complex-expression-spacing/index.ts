@@ -20,11 +20,11 @@ export const complexExpressionSpacing = createRule({
 
         function check(node: TSESTree.Expression): void {
             const parentPreviousToken = sourceCode.getTokenBefore(node, {
-                filter: token => token.type === 'Punctuator',
+                filter: token => token.type === TSESTree.AST_TOKEN_TYPES.Punctuator,
             })!;
 
             const parentNextToken = sourceCode.getTokenAfter(node, {
-                filter: token => token.type === 'Punctuator',
+                filter: token => token.type === TSESTree.AST_TOKEN_TYPES.Punctuator,
             })!;
 
             if (parentPreviousToken.loc.end.line === parentNextToken.loc.start.line) {
@@ -68,7 +68,7 @@ export const complexExpressionSpacing = createRule({
             ArrowFunctionExpression: (node): void => {
                 const {body} = node;
 
-                if (body.type === 'ConditionalExpression') {
+                if (body.type === TSESTree.AST_NODE_TYPES.ConditionalExpression) {
                     check(body);
                 }
             },
