@@ -25,7 +25,6 @@ const baseRules: Linter.RulesRecord = {
         ignoreTypeValueShadow: true,
         ignoreFunctionTypeParameterNameValueShadow: true,
     }],
-    '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/explicit-member-accessibility': [
         'error',
     ],
@@ -71,6 +70,20 @@ const baseRules: Linter.RulesRecord = {
     }],
     'no-undef': 'off',
     '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+
+    // Disable rules that turn `any` into `unknown`, places where `unknown` is the preferred type
+    // have that type already.
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unsafe-unary-minus': 'off',
+
+    // Breaks with overloaded functions that implement both callback and Promise signatures
+    '@typescript-eslint/no-misused-promises': 'off',
 };
 
 // Factory function to create TypeScript config with the plugin reference
@@ -94,16 +107,6 @@ export function createTypescriptConfig(plugin: ESLint.Plugin, javascriptConfig: 
                 },
             },
             rules: baseRules,
-        },
-        {
-            name: '@croct/typescript/tests',
-            files: [
-                'src/**/*.test.ts',
-                'test/**/*.ts',
-            ],
-            rules: {
-                'no-new-object': 'off',
-            },
         },
     ];
 }

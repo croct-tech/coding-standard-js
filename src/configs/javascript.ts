@@ -68,7 +68,6 @@ const baseRules: Linter.RulesRecord = {
     'no-fallthrough': 'error',
     '@stylistic/no-floating-decimal': 'error',
     'no-global-assign': ['error', {exceptions: []}],
-    'no-native-reassign': 'off',
     'no-implicit-coercion': ['off', {
         boolean: false,
         number: true,
@@ -156,7 +155,6 @@ const baseRules: Linter.RulesRecord = {
         message: 'Use the exponentiation operator (**) instead.',
     }],
     'no-return-assign': ['error', 'always'],
-    'no-return-await': 'error',
     'no-script-url': 'error',
     'no-self-assign': ['error', {
         props: true,
@@ -238,10 +236,8 @@ const baseRules: Linter.RulesRecord = {
     'no-unsafe-optional-chaining': ['error', {disallowArithmeticOperators: true}],
     'no-unused-private-class-members': 'off',
     'no-useless-backreference': 'error',
-    'no-negated-in-lhs': 'off',
     'require-atomic-updates': 'off',
     'use-isnan': 'error',
-    'valid-jsdoc': 'off',
     'valid-typeof': ['error', {requireStringLiterals: true}],
 
     // Style (from airbnb-base, with customizations)
@@ -263,13 +259,7 @@ const baseRules: Linter.RulesRecord = {
             ignoreConsecutiveComments: true,
         },
     }],
-    '@stylistic/comma-dangle': ['error', {
-        arrays: 'always-multiline',
-        objects: 'always-multiline',
-        imports: 'always-multiline',
-        exports: 'always-multiline',
-        functions: 'always-multiline',
-    }],
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
     '@stylistic/comma-spacing': ['error', {before: false, after: true}],
     '@stylistic/comma-style': ['error', 'last', {
         exceptions: {
@@ -290,7 +280,7 @@ const baseRules: Linter.RulesRecord = {
     'consistent-this': 'off',
     '@stylistic/eol-last': ['error', 'always'],
     '@stylistic/function-call-argument-newline': ['error', 'consistent'],
-    'func-call-spacing': ['error', 'never'],
+    '@stylistic/function-call-spacing': ['error', 'never'],
     'func-name-matching': ['off', 'always', {
         includeCommonJSModuleExports: false,
         considerPropertyDescriptor: true,
@@ -345,7 +335,7 @@ const baseRules: Linter.RulesRecord = {
             ignoreComments: false,
         },
     ],
-    'jsx-quotes': ['error', 'prefer-double'],
+    '@stylistic/jsx-quotes': ['error', 'prefer-double'],
     '@stylistic/key-spacing': ['error', {beforeColon: false, afterColon: true}],
     '@stylistic/keyword-spacing': ['error', {
         before: true,
@@ -364,12 +354,8 @@ const baseRules: Linter.RulesRecord = {
     '@stylistic/linebreak-style': ['error', 'unix'],
     '@stylistic/lines-between-class-members': ['error', 'always', {exceptAfterSingleLine: false}],
     '@stylistic/lines-around-comment': 'off',
-    'lines-around-directive': ['error', {
-        before: 'always',
-        after: 'always',
-    }],
     'max-depth': ['off', 4],
-    'max-len': [
+    '@stylistic/max-len': [
         'error',
         {
             code: 120,
@@ -394,7 +380,7 @@ const baseRules: Linter.RulesRecord = {
     'max-nested-callbacks': 'off',
     'max-params': ['off', 3],
     'max-statements': ['off', 10],
-    'max-statements-per-line': ['off', {max: 1}],
+    '@stylistic/max-statements-per-line': ['off', {max: 1}],
     '@stylistic/multiline-comment-style': ['off', 'starred-block'],
     '@stylistic/multiline-ternary': ['error', 'always-multiline'],
     'new-cap': ['error', {
@@ -404,15 +390,13 @@ const baseRules: Linter.RulesRecord = {
         capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
     }],
     '@stylistic/new-parens': 'error',
-    'newline-after-var': 'off',
-    'newline-before-return': 'off',
     '@stylistic/newline-per-chained-call': 'off',
     'no-array-constructor': 'error',
     'no-bitwise': 'off',
     'no-continue': 'off',
     'no-inline-comments': 'off',
     'no-lonely-if': 'error',
-    'no-mixed-operators': ['error', {
+    '@stylistic/no-mixed-operators': ['error', {
         groups: [
             ['%', '**'],
             ['%', '+'],
@@ -426,7 +410,7 @@ const baseRules: Linter.RulesRecord = {
         ],
         allowSamePrecedence: false,
     }],
-    'no-mixed-spaces-and-tabs': 'error',
+    '@stylistic/no-mixed-spaces-and-tabs': 'error',
     'no-multi-assign': ['error'],
     '@stylistic/no-multiple-empty-lines': [
         'error',
@@ -438,7 +422,6 @@ const baseRules: Linter.RulesRecord = {
     ],
     'no-negated-condition': 'off',
     'no-nested-ternary': 'error',
-    'no-new-object': 'error',
     'no-plusplus': 'off',
     'no-restricted-syntax': [
         'error',
@@ -446,8 +429,7 @@ const baseRules: Linter.RulesRecord = {
         'LabeledStatement',
         'WithStatement',
     ],
-    'no-spaced-func': 'error',
-    'no-tabs': 'error',
+    '@stylistic/no-tabs': 'error',
     'no-ternary': 'off',
     '@stylistic/no-trailing-spaces': ['error', {
         skipBlankLines: false,
@@ -546,9 +528,8 @@ const baseRules: Linter.RulesRecord = {
     ],
     'prefer-exponentiation-operator': 'error',
     'prefer-object-spread': 'error',
-    '@stylistic/quote-props': ['error', 'as-needed', {keywords: false, unnecessary: true, numbers: false}],
+    '@stylistic/quote-props': ['error', 'as-needed', {keywords: false, unnecessary: true, numbers: true}],
     '@stylistic/quotes': ['error', 'single', {avoidEscape: true}],
-    'require-jsdoc': 'off',
     '@stylistic/semi': ['error', 'always'],
     '@stylistic/semi-spacing': ['error', {before: false, after: true}],
     '@stylistic/semi-style': ['error', 'last'],
@@ -640,7 +621,6 @@ const baseRules: Linter.RulesRecord = {
         enforceForRenamedProperties: false,
     }],
     'prefer-numeric-literals': 'error',
-    'prefer-reflect': 'off',
     'prefer-rest-params': 'error',
     'prefer-spread': 'error',
     'prefer-template': 'error',
@@ -658,7 +638,6 @@ const baseRules: Linter.RulesRecord = {
 
     // Variables (from airbnb-base)
     'init-declarations': 'off',
-    'no-catch-shadow': 'off',
     'no-delete-var': 'error',
     'no-label-var': 'error',
     'no-restricted-globals': [
@@ -752,22 +731,8 @@ const baseRules: Linter.RulesRecord = {
     // Strict (from airbnb-base)
     strict: ['error', 'never'],
 
-    // Node (from airbnb-base)
-    'callback-return': 'off',
-    'global-require': 'error',
-    'handle-callback-err': 'off',
-    'no-buffer-constructor': 'error',
-    'no-mixed-requires': ['off', false],
-    'no-new-require': 'error',
-    'no-path-concat': 'error',
-    'no-process-env': 'off',
-    'no-process-exit': 'off',
-    'no-restricted-modules': 'off',
-    'no-sync': 'off',
-
     // Import rules (from airbnb-base)
     'import-x/no-unresolved': 'off',
-    'import-x/named': 'error',
     'import-x/default': 'off',
     'import-x/namespace': 'off',
     'import-x/export': 'error',
@@ -780,7 +745,6 @@ const baseRules: Linter.RulesRecord = {
     'import-x/no-amd': 'error',
     'import-x/no-nodejs-modules': 'off',
     'import-x/first': 'error',
-    'import-x/imports-first': 'off',
     'import-x/no-duplicates': 'error',
     'import-x/no-namespace': 'off',
     'import-x/extensions': [
@@ -904,16 +868,6 @@ export function createJavaScriptConfig(plugin: ESLint.Plugin): Linter.Config[] {
             rules: {
                 ...eslintComments.configs.recommended.rules,
                 ...baseRules,
-            },
-        },
-        {
-            name: '@croct/javascript/tests',
-            files: [
-                'src/**/*.test.js',
-                'test/**/*.js',
-            ],
-            rules: {
-                'no-new-object': 'off',
             },
         },
     ];
