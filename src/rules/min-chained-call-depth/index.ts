@@ -90,8 +90,8 @@ export const minChainedCallDepth = createRule({
                 : node;
 
             if (
-                // If the callee is not a member expression, skip.
-                // For example, root level calls like `foo();`.
+            // If the callee is not a member expression, skip.
+            // For example, root level calls like `foo();`.
                 callee.type !== AST_NODE_TYPES.MemberExpression
                 // If the callee is a computed member expression, like `foo[bar]()`, skip.
                 || callee.computed
@@ -134,7 +134,7 @@ export const minChainedCallDepth = createRule({
                 filter: token => token.loc.end.line === property.loc.start.line,
             })!;
 
-            const semicolon = sourceCode.getLastToken(node.parent!, {
+            const semicolon = sourceCode.getLastToken(node.parent, {
                 filter: token => (
                     token.loc.start.line === property.loc.start.line
                     && token.type === AST_TOKEN_TYPES.Punctuator

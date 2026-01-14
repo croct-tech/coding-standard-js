@@ -42,8 +42,8 @@ export const argumentSpacing = createRule({
 
             if (
                 (
-                    lastArgument.type !== 'ArrowFunctionExpression'
-                    || lastArgument.body.type === 'BlockStatement'
+                    lastArgument.type !== TSESTree.AST_NODE_TYPES.ArrowFunctionExpression
+                    || lastArgument.body.type === TSESTree.AST_NODE_TYPES.BlockStatement
                 )
                 && firstToken.loc.start.line === lastArgumentFirstToken.loc.start.line
             ) {
@@ -57,8 +57,8 @@ export const argumentSpacing = createRule({
             ];
 
             for (let i = 1; i < tokens.length; i++) {
-                const previousToken = tokens[i - 1]!;
-                const currentToken = tokens[i]!;
+                const previousToken = tokens[i - 1];
+                const currentToken = tokens[i];
 
                 if (previousToken.loc.end.line === currentToken.loc.start.line) {
                     const tokenBefore = sourceCode.getTokenBefore(

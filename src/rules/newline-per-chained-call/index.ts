@@ -52,7 +52,7 @@ export const newlinePerChainedCall = createRule({
         }
 
         function isNotClosingParenToken(token: TSESTree.Token): boolean {
-            return token.value !== ')' || token.type !== 'Punctuator';
+            return token.value !== ')' || token.type !== TSESTree.AST_TOKEN_TYPES.Punctuator;
         }
 
         function validateCallExpressionIgnoreDepth(
@@ -60,37 +60,37 @@ export const newlinePerChainedCall = createRule({
         ): void {
             let hasCallExpression = false;
 
-            if (node.type === 'CallExpression') {
+            if (node.type === TSESTree.AST_NODE_TYPES.CallExpression) {
                 hasCallExpression = true;
             }
 
             if (
-                (node.parent !== undefined)
-                && node.parent.type !== 'CallExpression'
-                && node.parent.type !== 'MemberExpression'
+                node.parent != null
+                && node.parent.type !== TSESTree.AST_NODE_TYPES.CallExpression
+                && node.parent.type !== TSESTree.AST_NODE_TYPES.MemberExpression
             ) {
                 const memberExpressions = [];
 
                 let currentNode: TSESTree.Expression = (
-                    node.type === 'CallExpression'
+                    'callee' in node
                         ? node.callee
                         : node
                 );
 
                 while (
-                    currentNode.type === 'CallExpression'
-                    || currentNode.type === 'MemberExpression'
+                    currentNode.type === TSESTree.AST_NODE_TYPES.CallExpression
+                    || currentNode.type === TSESTree.AST_NODE_TYPES.MemberExpression
                 ) {
-                    if (currentNode.type === 'MemberExpression') {
+                    if (currentNode.type === TSESTree.AST_NODE_TYPES.MemberExpression) {
                         if (
-                            currentNode.property.type === 'Identifier'
+                            currentNode.property.type === TSESTree.AST_NODE_TYPES.Identifier
                             && !currentNode.computed
                         ) {
                             memberExpressions.push(currentNode);
                         }
 
                         currentNode = currentNode.object;
-                    } else if (currentNode.type === 'CallExpression') {
+                    } else if (currentNode.type === TSESTree.AST_NODE_TYPES.CallExpression) {
                         currentNode = currentNode.callee;
                     }
                 }
@@ -105,11 +105,11 @@ export const newlinePerChainedCall = createRule({
                     const rootNode = expressionsOnSameLine[expressionsOnSameLine.length - 1];
 
                     if (
-                        rootNode.type === 'MemberExpression'
-                        && (rootNode.parent?.type === 'CallExpression'
-                            || rootNode.parent?.type === 'MemberExpression')
-                        && (rootNode.object.type === 'ThisExpression'
-                            || rootNode.object.type === 'Identifier')
+                        rootNode.type === TSESTree.AST_NODE_TYPES.MemberExpression
+                        && (rootNode.parent != null && (rootNode.parent.type === TSESTree.AST_NODE_TYPES.CallExpression
+                            || rootNode.parent.type === TSESTree.AST_NODE_TYPES.MemberExpression))
+                        && (rootNode.object.type === TSESTree.AST_NODE_TYPES.ThisExpression
+                            || rootNode.object.type === TSESTree.AST_NODE_TYPES.Identifier)
                     ) {
                         expressionsOnSameLine.pop();
                     }
@@ -138,7 +138,7 @@ export const newlinePerChainedCall = createRule({
 
         return {
             CallExpression: (node: TSESTree.CallExpression): void => {
-                if (node.callee?.type === 'MemberExpression') {
+                if (node.callee?.type === TSESTree.AST_NODE_TYPES.MemberExpression) {
                     validateCallExpressionIgnoreDepth(node);
                 }
             },

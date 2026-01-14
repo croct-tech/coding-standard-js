@@ -1,11 +1,4 @@
-import {cypress} from './cypress';
-import {react} from './react';
-import {typescript} from './typescript';
-import {javascript} from './javascript';
-
-export const configs = {
-    cypress: cypress,
-    react: react,
-    typescript: typescript,
-    javascript: javascript,
-};
+export {createCypressConfig} from './cypress';
+export {createReactConfig} from './react';
+export {createTypescriptConfig} from './typescript';
+export {createJavaScriptConfig, baseRules} from './javascript';
