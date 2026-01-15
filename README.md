@@ -30,50 +30,86 @@ Webpack or Browserify:
 npm i -D @croct/eslint-plugin
 ```
 
-Then, add the following to your `.eslintrc.js` file:
+This plugin uses ESLint's [flat config format](https://eslint.org/docs/latest/use/configure/configuration-files) (ESLint v9+).
+
+### JavaScript
+
+For JavaScript projects, create an `eslint.config.mjs` file:
 
 ```js
-// Workaround for https://github.com/eslint/eslint/issues/3458
-require("@rushstack/eslint-patch/modern-module-resolution");
+import { defineConfig } from 'eslint/config';
+import croct from '@croct/eslint-plugin';
 
-module.exports = {
-   "plugins": ["@croct"]
-}
+export default defineConfig(
+    croct.configs.javascript,
+);
 ```
-
-Note the `require` call at the top of the file. This is a workaround to avoid adding the transitive dependencies of 
-the plugin to the project, which is [currently not supported by the ESLint plugin system](https://github.com/eslint/eslint/issues/3458).
 
 ### TypeScript
 
-For TypeScript projects, you need first to install the TypeScript parser:
-
-```sh
-npm i -D @typescript-eslint/parser
-```
-
-Then, add the following to your `.eslintrc.js` file:
+For TypeScript projects, create an `eslint.config.mjs` file:
 
 ```js
-// Workaround for https://github.com/eslint/eslint/issues/3458
-require("@rushstack/eslint-patch/modern-module-resolution");
+import { defineConfig } from 'eslint/config';
+import croct from '@croct/eslint-plugin';
 
-module.exports = {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@croct"
-    ],
-    "extends": [
-      "plugin:@croct/typescript"
-    ],
-    "parserOptions": {
-      "extends": "./tsconfig.json",
-      "project": ["./tsconfig.json"]
-    },
-}
+export default defineConfig(
+    croct.configs.typescript,
+);
 ```
 
-For the list for available presets and rules, see the [reference documentation](docs/README.md). 
+The TypeScript config includes the JavaScript preset, so there's no need to include both.
+
+### React
+
+For React projects, create an `eslint.config.mjs` file:
+
+```js
+import { defineConfig } from 'eslint/config';
+import croct from '@croct/eslint-plugin';
+
+export default defineConfig(
+    croct.configs.react,
+);
+```
+
+The React config includes the JavaScript preset, so there's no need to include both.
+
+### Cypress
+
+For Cypress projects, create an `eslint.config.mjs` file:
+
+```js
+import { defineConfig } from 'eslint/config';
+import croct from '@croct/eslint-plugin';
+
+export default defineConfig(
+    croct.configs.cypress,
+);
+```
+
+The Cypress config includes the JavaScript preset, so there's no need to include both.
+
+### Custom rules
+
+You can add custom rules or override existing ones:
+
+```js
+import { defineConfig } from 'eslint/config';
+import croct from '@croct/eslint-plugin';
+
+export default defineConfig(
+    croct.configs.typescript,
+    {
+        files: ['src/**/*.ts'],
+        rules: {
+            '@typescript-eslint/explicit-function-return-type': 'off',
+        },
+    },
+);
+```
+
+For the list of available presets and rules, see the [reference documentation](docs/README.md). 
 
 ## Basic usage
 
