@@ -33,7 +33,6 @@ jobs:
         run: |-
           cp package.json LICENSE README.md dist/
           cd dist
-          sed -i -e "s~\"version\": \"0.0.0-dev\"~\"version\": \"${GITHUB_REF##*/}\"~" package.json
           sed -i -e "s~\"main\": \"dist/index.js\"~\"main\": \"index.js\"~" package.json
           sed -i -e "s~\"types\": \"dist/index.d.ts\"~\"types\": \"index.d.ts\"~" package.json
 
