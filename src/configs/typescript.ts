@@ -71,6 +71,7 @@ const baseRules: Linter.RulesRecord = {
     'no-undef': 'off',
     '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/consistent-type-imports': 'error',
 
     // Disable rules that turn `any` into `unknown`, places where `unknown` is the preferred type
     // have that type already.
