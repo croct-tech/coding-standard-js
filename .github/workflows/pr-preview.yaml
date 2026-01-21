@@ -1,0 +1,43 @@
+name: PR preview
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - opened
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v5
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Prepare release
+        run: |-
+          cp package.json LICENSE README.md dist/
+          cd dist
+          sed -i -e "s~\"main\": \"dist/index.js\"~\"main\": \"index.js\"~" package.json
+          sed -i -e "s~\"types\": \"dist/index.d.ts\"~\"types\": \"index.d.ts\"~" package.json
+
+      - name: Publish preview
+        run: |-
+          npx pkg-pr-new publish \
+            --compact --comment=update \
+            ./dist

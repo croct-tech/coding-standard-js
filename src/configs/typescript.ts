@@ -111,5 +111,13 @@ export function createTypescriptConfig(plugin: ESLint.Plugin, javascriptConfig: 
             },
             rules: baseRules,
         },
+        {
+            name: '@croct/typescript-test-files',
+            files: ['**/*.test.ts', '**/*.test.tsx'],
+            rules: {
+                // Prevent false warnings when checking mocked interfaces
+                '@typescript-eslint/unbound-method': 'off',
+            },
+        },
     ];
 }
