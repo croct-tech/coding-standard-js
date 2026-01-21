@@ -1,5 +1,5 @@
 import {AST_NODE_TYPES} from '@typescript-eslint/utils';
-import {RuleFix} from '@typescript-eslint/utils/ts-eslint';
+import type {RuleFix} from '@typescript-eslint/utils/ts-eslint';
 import {createRule} from '../createRule';
 
 export const parameterDestructuring = createRule({
