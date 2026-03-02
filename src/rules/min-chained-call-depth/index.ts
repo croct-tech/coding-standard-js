@@ -30,6 +30,7 @@ export const minChainedCallDepth = createRule({
                 additionalProperties: false,
             },
         ],
+        defaultOptions: [],
         messages: {
             unexpectedLineBreak: 'Unexpected line break.',
         },

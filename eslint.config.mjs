@@ -3,8 +3,8 @@ import eslintPlugin from 'eslint-plugin-eslint-plugin';
 import { configs } from './dist/index.cjs';
 
 export default defineConfig(
-    configs.typescript,
-    eslintPlugin.configs['flat/recommended'],
+    ...configs.typescript,
+    eslintPlugin.configs['recommended'],
     {
         files: ['src/**/*.ts'],
         rules: {

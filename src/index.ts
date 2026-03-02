@@ -1,9 +1,9 @@
-import type { ESLint } from 'eslint';
-import { rules } from './rules';
-import { createJavaScriptConfig } from './configs/javascript';
-import { createTypescriptConfig } from './configs/typescript';
-import { createReactConfig } from './configs/react';
-import { createCypressConfig } from './configs/cypress';
+import type {ESLint} from 'eslint';
+import {rules} from './rules';
+import {createJavaScriptConfig} from './configs/javascript';
+import {createTypescriptConfig} from './configs/typescript';
+import {createReactConfig} from './configs/react';
+import {createCypressConfig} from './configs/cypress';
 
 // Create the plugin with just the rules first
 const plugin = {
@@ -29,4 +29,4 @@ export const configs = {
 Object.assign(plugin.configs, configs);
 
 // Re-export rules and configs for convenience
-export { plugin, rules };
+export {plugin, rules};
