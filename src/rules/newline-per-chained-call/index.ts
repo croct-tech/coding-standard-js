@@ -38,7 +38,7 @@ export const newlinePerChainedCall = createRule({
         const options = context.options[0] ?? {};
         const ignoreChainWithDepth = options.ignoreChainDeeperThan ?? 2;
 
-        const sourceCode = context.getSourceCode();
+        const {sourceCode} = context;
 
         function getPropertyText(node: TSESTree.MemberExpression): string {
             const prefix = '.';

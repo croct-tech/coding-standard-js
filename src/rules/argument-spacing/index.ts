@@ -18,7 +18,7 @@ export const argumentSpacing = createRule({
     defaultOptions: [],
     create: context => {
         function check(node: TSESTree.NewExpression | TSESTree.CallExpression): void {
-            const sourceCode = context.getSourceCode();
+            const {sourceCode} = context;
 
             if (node.arguments.length === 0) {
                 return;

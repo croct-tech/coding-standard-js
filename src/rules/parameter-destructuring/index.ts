@@ -20,7 +20,7 @@ export const parameterDestructuring = createRule({
     },
     defaultOptions: [],
     create: context => {
-        const sourceCode = context.getSourceCode();
+        const {sourceCode} = context;
 
         return {
             ObjectPattern: function checkObjectPattern(node): void {

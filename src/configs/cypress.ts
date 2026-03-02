@@ -1,4 +1,5 @@
 import type {Linter, ESLint} from 'eslint';
+import {fixupPluginRules} from '@eslint/compat';
 import cypressPlugin from 'eslint-plugin-cypress';
 
 // Factory function to create Cypress config with the plugin reference
@@ -8,7 +9,7 @@ export function createCypressConfig(plugin: ESLint.Plugin, javascriptConfig: Lin
         {
             name: '@croct/cypress',
             plugins: {
-                cypress: cypressPlugin,
+                cypress: fixupPluginRules(cypressPlugin),
                 '@croct': plugin,
             },
             rules: {

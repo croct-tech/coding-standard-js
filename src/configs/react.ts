@@ -1,4 +1,5 @@
 import type {ESLint, Linter} from 'eslint';
+import {fixupConfigRules, fixupPluginRules} from '@eslint/compat';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import testingLibrary from 'eslint-plugin-testing-library';
@@ -320,14 +321,14 @@ const baseRules: Linter.RulesRecord = {
 export function createReactConfig(plugin: ESLint.Plugin, javascriptConfig: Linter.Config[]): Linter.Config[] {
     return [
         ...javascriptConfig,
-        reactPlugin.configs.flat.recommended,
+        ...fixupConfigRules(reactPlugin.configs.flat.recommended),
         testingLibrary.configs['flat/react'],
-        jestDom.configs['flat/recommended'],
+        ...fixupConfigRules(jestDom.configs['flat/recommended']),
         jsxA11y.flatConfigs.recommended as Linter.Config,
         {
             name: '@croct/react',
             plugins: {
-                'react-hooks': reactHooks,
+                'react-hooks': fixupPluginRules(reactHooks),
                 '@stylistic': stylistic,
                 '@croct': plugin,
             },

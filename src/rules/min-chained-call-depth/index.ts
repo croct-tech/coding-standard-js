@@ -41,7 +41,7 @@ export const minChainedCallDepth = createRule({
         },
     ],
     create: context => {
-        const sourceCode = context.getSourceCode();
+        const {sourceCode} = context;
         let maxDepth = 0;
 
         function getDepth(node: TSESTree.MemberExpression | TSESTree.CallExpression): number {
