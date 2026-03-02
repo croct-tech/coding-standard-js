@@ -19,13 +19,17 @@ export const newlinePerChainedCall = createRule({
                         type: 'integer',
                         minimum: 1,
                         maximum: 10,
-                        default: 2,
+                        description: 'The minimum chain depth at which to ignore the rule.',
                     },
                 },
                 additionalProperties: false,
             },
         ],
-        defaultOptions: [],
+        defaultOptions: [
+            {
+                ignoreChainDeeperThan: 2,
+            },
+        ],
         messages: {
             expectedLineBreak: 'Expected line break before `{{propertyName}}`.',
         },

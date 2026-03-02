@@ -328,7 +328,7 @@ export function createReactConfig(plugin: ESLint.Plugin, javascriptConfig: Linte
         {
             name: '@croct/react',
             plugins: {
-                'react-hooks': fixupPluginRules(reactHooks),
+                'react-hooks': fixupPluginRules(reactHooks as ESLint.Plugin),
                 '@stylistic': stylistic,
                 '@croct': plugin,
             },
