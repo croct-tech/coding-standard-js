@@ -1,8 +1,8 @@
 import type {ESLint, Linter} from 'eslint';
+import {fixupPluginRules} from '@eslint/compat';
 import globals from 'globals';
 import jest from 'eslint-plugin-jest';
 import {importX} from 'eslint-plugin-import-x';
-// @ts-expect-error - no types available
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments';
 // @ts-expect-error - no types available
 import importNewlines from 'eslint-plugin-import-newlines';
@@ -854,7 +854,7 @@ export function createJavaScriptConfig(plugin: ESLint.Plugin): Linter.Config[] {
                 // import-x exports types using ESLint v8 for compatibility reasons,
                 // but it is compatible with ESLint v9 as well.
                 'import-x': importX as unknown as ESLint.Plugin,
-                'newline-destructuring': newlineDestructuring,
+                'newline-destructuring': fixupPluginRules(newlineDestructuring),
                 '@croct': plugin,
             },
             languageOptions: {

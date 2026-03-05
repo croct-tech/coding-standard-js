@@ -19,10 +19,15 @@ export const newlinePerChainedCall = createRule({
                         type: 'integer',
                         minimum: 1,
                         maximum: 10,
-                        default: 2,
+                        description: 'The minimum chain depth at which to ignore the rule.',
                     },
                 },
                 additionalProperties: false,
+            },
+        ],
+        defaultOptions: [
+            {
+                ignoreChainDeeperThan: 2,
             },
         ],
         messages: {
@@ -38,7 +43,7 @@ export const newlinePerChainedCall = createRule({
         const options = context.options[0] ?? {};
         const ignoreChainWithDepth = options.ignoreChainDeeperThan ?? 2;
 
-        const sourceCode = context.getSourceCode();
+        const {sourceCode} = context;
 
         function getPropertyText(node: TSESTree.MemberExpression): string {
             const prefix = '.';

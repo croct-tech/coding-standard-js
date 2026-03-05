@@ -28,10 +28,5 @@ export const configs = {
 
 Object.assign(plugin.configs, configs);
 
-// Export the plugin as default
-export default plugin as ESLint.Plugin & {
-    configs: typeof configs,
-};
-
 // Re-export rules and configs for convenience
-export {rules};
+export {plugin, rules};

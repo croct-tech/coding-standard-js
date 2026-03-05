@@ -16,7 +16,7 @@ export const complexExpressionSpacing = createRule({
     },
     defaultOptions: [],
     create: context => {
-        const sourceCode = context.getSourceCode();
+        const {sourceCode} = context;
 
         function check(node: TSESTree.Expression): void {
             const parentPreviousToken = sourceCode.getTokenBefore(node, {

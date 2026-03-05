@@ -16,7 +16,7 @@ export const jsxAttributeSpacing = createRule({
     },
     defaultOptions: [],
     create: context => {
-        const sourceCode = context.getSourceCode();
+        const {sourceCode} = context;
 
         function check(node: TSESTree.JSXAttribute): void {
             const {value} = node;

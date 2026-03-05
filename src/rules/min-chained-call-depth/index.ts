@@ -18,16 +18,22 @@ export const minChainedCallDepth = createRule({
                     maxLineLength: {
                         type: 'integer',
                         minimum: 1,
-                        default: 100,
+                        description: 'The maximum line length allowed for inlining chained calls.',
                     },
                     ignoreChainDeeperThan: {
                         type: 'integer',
                         minimum: 1,
                         maximum: 10,
-                        default: 2,
+                        description: 'The minimum chain depth at which to ignore the rule.',
                     },
                 },
                 additionalProperties: false,
+            },
+        ],
+        defaultOptions: [
+            {
+                maxLineLength: 100,
+                ignoreChainDeeperThan: 2,
             },
         ],
         messages: {
@@ -41,7 +47,7 @@ export const minChainedCallDepth = createRule({
         },
     ],
     create: context => {
-        const sourceCode = context.getSourceCode();
+        const {sourceCode} = context;
         let maxDepth = 0;
 
         function getDepth(node: TSESTree.MemberExpression | TSESTree.CallExpression): number {
