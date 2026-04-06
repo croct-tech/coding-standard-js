@@ -9,7 +9,6 @@ jobs:
   deploy:
     uses: croct-tech/github-workflows/.github/workflows/publish-npm-package.yml@unify-workflows
     with:
-      node-version: "24"
       build-dir: "dist"
       publish-access: "public"
       prepare-script: >-
