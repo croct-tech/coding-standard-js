@@ -17,4 +17,4 @@ jobs:
     with:
       run-security: true
       use-private-registry: false
-      lint-command: build && npm run lint
+      lint-command: npm run build && npm run lint
