@@ -18,7 +18,6 @@ export const parameterDestructuring = createRule({
             ),
         },
     },
-    defaultOptions: [],
     create: context => {
         const {sourceCode} = context;
 

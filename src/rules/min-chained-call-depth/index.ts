@@ -40,12 +40,6 @@ export const minChainedCallDepth = createRule({
             unexpectedLineBreak: 'Unexpected line break.',
         },
     },
-    defaultOptions: [
-        {
-            maxLineLength: 100,
-            ignoreChainDeeperThan: 2,
-        },
-    ],
     create: context => {
         const {sourceCode} = context;
         let maxDepth = 0;
