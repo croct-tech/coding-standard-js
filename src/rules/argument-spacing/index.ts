@@ -15,7 +15,6 @@ export const argumentSpacing = createRule({
             missing: 'Missing new line.',
         },
     },
-    defaultOptions: [],
     create: context => {
         function check(node: TSESTree.NewExpression | TSESTree.CallExpression): void {
             const {sourceCode} = context;

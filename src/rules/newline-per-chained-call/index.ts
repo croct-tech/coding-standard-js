@@ -34,11 +34,6 @@ export const newlinePerChainedCall = createRule({
             expectedLineBreak: 'Expected line break before `{{propertyName}}`.',
         },
     },
-    defaultOptions: [
-        {
-            ignoreChainDeeperThan: 2,
-        },
-    ],
     create: context => {
         const options = context.options[0] ?? {};
         const ignoreChainWithDepth = options.ignoreChainDeeperThan ?? 2;

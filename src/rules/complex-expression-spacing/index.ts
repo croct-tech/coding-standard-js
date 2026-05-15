@@ -14,7 +14,6 @@ export const complexExpressionSpacing = createRule({
             missing: 'Missing new line.',
         },
     },
-    defaultOptions: [],
     create: context => {
         const {sourceCode} = context;
 
