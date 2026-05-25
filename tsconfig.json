@@ -15,11 +15,14 @@
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "removeComments": false,
+    "rootDir": "src",
     "outDir": "dist",
     "downlevelIteration": true,
+    "ignoreDeprecations": "6.0",
     "declaration": false,
     "skipLibCheck": true,
-    "lib": ["es6"]
+    "types": ["node", "jest"],
+    "lib": ["ES2020"]
   },
   "include": [
     "src/**/*.ts"
