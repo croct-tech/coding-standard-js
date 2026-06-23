@@ -33,8 +33,15 @@ jobs:
         run: |-
           cp package.json LICENSE README.md dist/
           cd dist
-          sed -i -e "s~\"main\": \"dist/index.js\"~\"main\": \"index.js\"~" package.json
-          sed -i -e "s~\"types\": \"dist/index.d.ts\"~\"types\": \"index.d.ts\"~" package.json
+          
+          tmp=$(mktemp)
+          
+          jq '
+            .main = "index.js" |
+            .types = "index.d.ts"
+          ' package.json > "$tmp"
+          
+          mv "$tmp" package.json
 
       - name: Publish preview
         run: |-
