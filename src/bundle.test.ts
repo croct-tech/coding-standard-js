@@ -5,18 +5,9 @@ import {execFileSync} from 'node:child_process';
 
 const requireFromTest = createRequire(__filename);
 
-function buildBundle(): string {
-    execFileSync('npm', ['run', 'build'], {
-        cwd: path.resolve(__dirname, '..'),
-        stdio: 'pipe',
-    });
-
-    return path.resolve(__dirname, '../dist/index.cjs');
-}
-
 describe('published bundle', () => {
     it('inlines metadata for bundled plugins that read their own package.json', () => {
-        const bundlePath = buildBundle();
+        const bundlePath = path.resolve(__dirname, '../dist/index.cjs');
         const bundle = fs.readFileSync(bundlePath, 'utf8');
 
         expect(bundle).not.toContain('cjsRequire("../package.json")');

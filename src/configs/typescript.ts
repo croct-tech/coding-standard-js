@@ -90,15 +90,24 @@ const baseRules: Linter.RulesRecord = {
     'no-void': 'off',
 };
 
+const typescriptFiles = ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'];
+
 // Factory function to create TypeScript config with the plugin reference
 export function createTypescriptConfig(plugin: ESLint.Plugin, javascriptConfig: Linter.Config[]): Linter.Config[] {
     return [
         ...javascriptConfig,
-        ...tseslint.configs.recommendedTypeChecked,
+        ...tseslint.configs
+            .recommendedTypeChecked
+            .map(
+                config => ({
+                    ...config,
+                    files: typescriptFiles,
+                }),
+            ),
         jest.configs['flat/recommended'],
         {
             name: '@croct/typescript',
-            files: ['**/*.ts', '**/*.tsx'],
+            files: typescriptFiles,
             plugins: {
                 '@stylistic': stylistic,
                 '@croct': plugin,
